@@ -1,0 +1,887 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3efe5">
+    <meta name="description" content="The Golden Times — memories, old stories, unforgettable moments, and campus nostalgia from SSG Times.">
+    <title>The Golden Times | SSG TIMES</title>
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+
+    <style>
+        :root {
+            --paper: #f3efe5;
+            --deep: #e6dece;
+            --ink: #191815;
+            --red: #8e2d25;
+            --muted: #69645b;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--serif);
+            line-height: 1.65;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .top-strip {
+            padding: 6px 15px;
+            background: var(--ink);
+            color: var(--paper);
+            text-align: center;
+            font: 10px var(--sans);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .masthead {
+            padding: 27px 16px 20px;
+            text-align: center;
+            border-bottom: 4px double var(--ink);
+        }
+
+        .masthead .small-line {
+            margin: 0 0 8px;
+            color: var(--muted);
+            font: 10px var(--sans);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .masthead h1 {
+            margin: 0;
+            font-size: clamp(43px, 9vw, 88px);
+            font-weight: 900;
+            letter-spacing: -4px;
+            line-height: 1;
+        }
+
+        .masthead h1 span {
+            color: var(--red);
+        }
+
+        .tagline {
+            margin: 12px 0 0;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        .edition-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 8px 16px;
+            padding: 9px 5%;
+            border-bottom: 3px double var(--ink);
+            font: 10px var(--sans);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-bottom: 1px solid var(--ink);
+            background: var(--deep);
+        }
+
+        nav a {
+            padding: 11px 14px;
+            font: bold 11px var(--sans);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: background .2s, color .2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .page {
+            width: min(1120px, 92%);
+            margin: 0 auto;
+        }
+
+        .notice {
+            margin: 22px 0;
+            padding: 12px 15px;
+            border: 1px solid var(--red);
+            color: var(--red);
+            font: 11px/1.7 var(--sans);
+            text-align: center;
+        }
+
+        .kicker {
+            margin: 30px 0 5px;
+            color: var(--red);
+            font: bold 11px var(--sans);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .page-title {
+            max-width: 900px;
+            margin: 0;
+            font-size: clamp(38px, 7vw, 72px);
+            line-height: 1.03;
+            letter-spacing: -2px;
+        }
+
+        .intro {
+            max-width: 760px;
+            margin: 16px 0 25px;
+            color: #39362f;
+            font-size: 17px;
+        }
+
+        .double-rule {
+            height: 4px;
+            margin: 23px 0;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+            gap: 27px;
+            padding: 5px 0 30px;
+            border-bottom: 3px double var(--ink);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: var(--red);
+            font: bold 10px var(--sans);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .hero h2 {
+            margin: 0 0 12px;
+            font-size: clamp(31px, 4.6vw, 49px);
+            line-height: 1.08;
+        }
+
+        .hero p {
+            margin: 11px 0;
+        }
+
+        .byline {
+            color: var(--muted);
+            font: 10px var(--sans);
+            letter-spacing: .6px;
+            text-transform: uppercase;
+        }
+
+        .image-frame {
+            width: 100%;
+            height: 100%;
+            min-height: 230px;
+            max-height: 390px;
+            overflow: hidden;
+            border: 1px solid #b7ad9a;
+            background: var(--deep);
+        }
+
+        .image-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 230px;
+            max-height: 390px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero .image-frame {
+            height: 330px;
+        }
+
+        .pullquote {
+            margin: 22px 0;
+            padding: 17px 20px;
+            border-left: 4px solid var(--red);
+            background: var(--deep);
+            font-size: 20px;
+            font-style: italic;
+        }
+
+        .pullquote span {
+            display: block;
+            margin-top: 8px;
+            color: var(--muted);
+            font: 10px var(--sans);
+            font-style: normal;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .section-heading {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+            margin: 34px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+        .section-heading span {
+            color: var(--muted);
+            font: 10px var(--sans);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .searchbar {
+            margin: 18px 0 23px;
+        }
+
+        .searchbar input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #aaa18f;
+            border-radius: 0;
+            background: #fbf8f0;
+            color: var(--ink);
+            font: 13px var(--sans);
+        }
+
+        .searchbar input:focus {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px 20px;
+        }
+
+        .memory-card {
+            min-width: 0;
+            padding-bottom: 19px;
+            border-bottom: 1px solid #b9b09f;
+        }
+
+        .memory-card[hidden] {
+            display: none;
+        }
+
+        .memory-card .image-frame {
+            height: 190px;
+            min-height: 0;
+            margin-bottom: 14px;
+        }
+
+        .memory-card .image-frame img {
+            height: 100%;
+            min-height: 0;
+            max-height: none;
+        }
+
+        .memory-card h3 {
+            margin: 0 0 8px;
+            font-size: 24px;
+            line-height: 1.15;
+        }
+
+        .memory-card p {
+            margin: 9px 0;
+            font-size: 14px;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 6px;
+            color: var(--red);
+            font: bold 11px var(--sans);
+            letter-spacing: .5px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .memory-card .byline {
+            margin-top: 8px;
+        }
+
+        .empty-state {
+            display: none;
+            padding: 24px;
+            border: 1px dashed var(--muted);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .empty-state.visible {
+            display: block;
+        }
+
+        .memory-manifesto {
+            margin: 38px 0;
+            padding: 27px;
+            border: 2px solid var(--ink);
+            text-align: center;
+        }
+
+        .memory-manifesto h2 {
+            margin: 6px 0 12px;
+            font-size: clamp(28px, 5vw, 42px);
+            line-height: 1.1;
+        }
+
+        .memory-manifesto p {
+            max-width: 720px;
+            margin: 12px auto;
+        }
+
+        .memory-manifesto .stamp {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 7px 12px;
+            border: 1px solid var(--red);
+            color: var(--red);
+            font: bold 10px var(--sans);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transform: rotate(-2deg);
+        }
+
+        .submit-box {
+            margin: 35px 0;
+            padding: 26px;
+            background: var(--deep);
+            text-align: center;
+        }
+
+        .submit-box h2 {
+            margin: 6px 0;
+            font-size: clamp(27px, 4vw, 38px);
+        }
+
+        .submit-box p {
+            max-width: 650px;
+            margin: 10px auto;
+        }
+
+        .submit-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 18px;
+            background: var(--ink);
+            color: var(--paper);
+            font: bold 11px var(--sans);
+            letter-spacing: 1px;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+        }
+
+        .submit-button:hover {
+            background: var(--red);
+        }
+
+        .editorial-note {
+            margin: 25px 0 35px;
+            padding: 16px 0;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+            color: var(--muted);
+            font: 12px/1.8 var(--sans);
+        }
+
+        footer {
+            padding: 25px 16px;
+            background: var(--ink);
+            color: var(--paper);
+            text-align: center;
+        }
+
+        footer strong {
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        footer p {
+            margin: 5px 0;
+            color: #d1c7b5;
+            font: 11px/1.7 var(--sans);
+        }
+
+        @media (max-width: 850px) {
+            .memory-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 650px) {
+            .masthead h1 {
+                letter-spacing: -2px;
+            }
+
+            .edition-bar {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav a {
+                padding: 10px 11px;
+                font-size: 10px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 17px;
+            }
+
+            .hero .image-frame {
+                height: 240px;
+                min-height: 0;
+            }
+
+            .hero .image-frame img {
+                height: 100%;
+                min-height: 0;
+            }
+
+            .memory-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .memory-card .image-frame {
+                height: 230px;
+            }
+
+            .memory-manifesto,
+            .submit-box {
+                padding: 21px 15px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-strip">
+        A record of yesterday, a reminder of what mattered
+    </div>
+
+    <header class="masthead">
+        <p class="small-line">The Unofficial Voice of Sainik School Goalpara</p>
+        <h1>SSG <span>TIMES</span></h1>
+        <p class="tagline">Some stories grow older. Some become legends.</p>
+    </header>
+
+    <div class="edition-bar">
+        <span>The Golden Times</span>
+        <span id="edition-date">Memories · People · Moments</span>
+        <span>From the Campus Archives</span>
+    </div>
+
+    <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="reports.html">Reports</a>
+        <a href="investigations.html">Investigations</a>
+        <a href="golden-times.html" class="active">Golden Times</a>
+        <a href="opinion.html">Opinion</a>
+        <a href="cartoons.html">Cartoons</a>
+        <a href="archives.html">Archives</a>
+    </nav>
+
+    <main class="page">
+        <div class="notice">
+            <strong>THE GOLDEN TIMES:</strong>
+            A home for shared memories, old photographs, batch stories, and the
+            little moments that deserve to outlive the school timetable.
+        </div>
+
+        <p class="kicker">🕰️ The Campus Memory Project</p>
+        <h2 class="page-title">Yesterday's Ordinary. Tomorrow's Legendary.</h2>
+
+        <p class="intro">
+            Years later, nobody remembers every page of every textbook.
+            But people remember the friend who made the whole room laugh,
+            the match that nobody expected to win, the quiet evening under a tree,
+            and the day that became a story before it was even over.
+            This page is for those moments.
+        </p>
+
+        <div class="double-rule"></div>
+
+        <section class="hero">
+            <div>
+                <span class="eyebrow">From the Memory Desk · Feature Story</span>
+                <h2>The Golden Times: When Ordinary Days Become Legends</h2>
+
+                <p class="byline">SSG TIMES · CAMPUS MEMORIES EDITION</p>
+
+                <p>
+                    A school is made of more than buildings, schedules, examinations,
+                    and official photographs. It is also made of moments that nobody
+                    thought to document at the time.
+                </p>
+
+                <p>
+                    A shared joke during a difficult day. A last-minute victory.
+                    A friend who helped without being asked. A class that could
+                    turn a completely ordinary afternoon into a story retold for years.
+                </p>
+
+                <p>
+                    Those moments rarely announce themselves as history.
+                    They simply happen—and, somewhere down the line, become the
+                    stories people carry with them.
+                </p>
+
+                <div class="pullquote">
+                    "The bell ends the period. It does not end the memory."
+                    <span>— The Golden Times</span>
+                </div>
+
+                <p>
+                    This is not an official record of every event at SSG.
+                    It is an invitation to preserve the funny, meaningful,
+                    surprising, and wonderfully human details that make a school
+                    more than a place on a map.
+                </p>
+            </div>
+
+            <div class="image-frame">
+                <img
+                    src="assets/images/golden-times-archive.webp"
+                    alt="Vintage engraving of a school building beneath a tree with students in the distance"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <div class="section-heading">
+            <h2>Pages from Campus Life</h2>
+            <span>Stories worth remembering</span>
+        </div>
+
+        <div class="searchbar">
+            <input
+                type="search"
+                id="memory-search"
+                placeholder="Search memories and stories..."
+                aria-label="Search Golden Times stories"
+            >
+        </div>
+
+        <section class="memory-grid" id="memory-grid" aria-label="Campus memory stories">
+
+            <article class="memory-card searchable"
+                data-search="friendship friends classmates bonds support laughter">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/golden-times-archive.webp"
+                        alt="Vintage schoolyard illustration representing lasting friendships"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="eyebrow">Memory File No. 001</span>
+                <h3>The People Who Made the Place</h3>
+                <p class="byline">Friendship · Everyday Life</p>
+
+                <p>
+                    Some classmates become friends. Some friends become part of
+                    the stories you tell for the rest of your life. It may be a
+                    shared laugh, an unexpected act of kindness, or simply
+                    someone who made a difficult day feel manageable.
+                </p>
+
+                <p>
+                    The smallest gestures often survive the longest in memory.
+                </p>
+            </article>
+
+            <article class="memory-card searchable"
+                data-search="classroom teacher lessons funny school academic memories">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/homework-multiplicus.webp"
+                        alt="Vintage engraving of books and notebooks on a desk"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="eyebrow">Memory File No. 002</span>
+                <h3>The Classroom Chronicles</h3>
+                <p class="byline">Lessons · Laughter · Learning</p>
+
+                <p>
+                    Every classroom has its own collection of legendary moments:
+                    the question nobody expected, the answer that made everyone
+                    laugh, the explanation that finally made sense, and the
+                    assignment everyone remembered at the same time.
+                </p>
+
+                <p>
+                    Not every lesson stays in a notebook. Some stay in the story.
+                </p>
+            </article>
+
+            <article class="memory-card searchable"
+                data-search="sports games athletics competition teamwork victories defeat medals">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/front-page-doodle.webp"
+                        alt="Vintage campus illustration representing school competitions and ambition"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="eyebrow">Memory File No. 003</span>
+                <h3>The Match Nobody Forgot</h3>
+                <p class="byline">Sports · Team Spirit</p>
+
+                <p>
+                    Some matches are remembered for the final score. Others are
+                    remembered for the comeback, the unexpected hero, the dramatic
+                    finish, or the team that kept going when victory seemed unlikely.
+                </p>
+
+                <p>
+                    The result becomes a number. The story becomes a tradition.
+                </p>
+            </article>
+
+            <article class="memory-card searchable"
+                data-search="hostel everyday routine friends conversations evening memories">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/hostel-hierarchy.webp"
+                        alt="Vintage illustration of a long hostel corridor"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="eyebrow">Memory File No. 004</span>
+                <h3>The Hostel Years</h3>
+                <p class="byline">Routine · Resilience · Stories</p>
+
+                <p>
+                    Hostel life is full of routines that seem ordinary while
+                    they happen. The familiar corridor, the daily rush, the
+                    conversations between obligations, and the little jokes
+                    that only the people there would understand.
+                </p>
+
+                <p>
+                    Years later, even the most routine details can become
+                    surprisingly vivid memories.
+                </p>
+            </article>
+
+            <article class="memory-card searchable"
+                data-search="campus trees grounds nature peaceful evenings school memories">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/golden-times-archive.webp"
+                        alt="Vintage school landscape with a large tree and quiet campus grounds"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="eyebrow">Memory File No. 005</span>
+                <h3>The Tree That Saw Everything</h3>
+                <p class="byline">Places · Quiet Moments</p>
+
+                <p>
+                    Every campus has places that quietly become part of its
+                    identity: a familiar tree, a path walked a thousand times,
+                    a corner where friends gather, or a view that feels different
+                    at the end of a long day.
+                </p>
+
+                <p>
+                    Buildings may change. A familiar place can still bring
+                    an entire chapter back.
+                </p>
+            </article>
+
+            <article class="memory-card searchable"
+                data-search="school traditions ceremonies events annual day march parade memories">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/front-page-doodle.webp"
+                        alt="Vintage newspaper illustration of a school campus"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="eyebrow">Memory File No. 006</span>
+                <h3>The Day the Whole Campus Remembered</h3>
+                <p class="byline">Traditions · Shared Experiences</p>
+
+                <p>
+                    Some days feel different from the moment they begin.
+                    A competition, a ceremony, a school event, or an unexpected
+                    moment brings people together and gives everyone something
+                    to talk about afterward.
+                </p>
+
+                <p>
+                    The best memories are often the ones people can share.
+                </p>
+            </article>
+
+        </section>
+
+        <p class="empty-state" id="empty-state">
+            No matching memories found. Try another word from the past.
+        </p>
+
+        <section class="memory-manifesto">
+            <span class="eyebrow">A Note from the Archives</span>
+            <h2>Memory Is Not Measured in Years.</h2>
+
+            <p>
+                Some moments last only a few seconds but remain with us for years.
+                Some people leave a mark without ever knowing it. And some ordinary
+                days become precious only after they have passed.
+            </p>
+
+            <p>
+                The Golden Times exists to preserve those stories—not to pretend
+                that every day was perfect, but to remember that even imperfect
+                days can contain something worth keeping.
+            </p>
+
+            <span class="stamp">Keep the stories alive</span>
+        </section>
+
+        <section class="submit-box">
+            <span class="eyebrow">Open Call · Memory Contributors</span>
+            <h2>Your Batch Has a Story.</h2>
+
+            <p>
+                Have an old photograph, a funny classroom incident, a memorable
+                match, a batch tradition, or a story that deserves to be remembered?
+                Send it to the SSG Times editorial desk.
+            </p>
+
+            <p>
+                Include a short title and the context behind the memory.
+                Only submit photographs and personal details you have permission
+                to share.
+            </p>
+
+            <a class="submit-button"
+               href="mailto:editorthessgtimes@rediffmail.com?subject=The%20Golden%20Times%20Submission">
+                CONTRIBUTE A MEMORY →
+            </a>
+
+            <p class="byline">editorthessgtimes@rediffmail.com</p>
+        </section>
+
+        <div class="editorial-note">
+            <strong>EDITORIAL POLICY</strong><br>
+            The Golden Times is a section of SSG TIMES, an unofficial publication
+            under construction. Memories and submissions may be edited for clarity,
+            length, privacy, and fairness. Please obtain permission before sharing
+            photographs, names, or personal stories about other people. Do not
+            submit confidential information or unverified allegations.
+        </div>
+    </main>
+
+    <footer>
+        <strong>SSG TIMES</strong>
+        <p>Some stories grow older. Some become legends.</p>
+        <p>The Golden Times · Memories from campus life</p>
+        <p>© <span id="footer-year"></span> SSG Times. Unofficial publication.</p>
+        <p><a href="index.html">Home</a> · <a href="archives.html">Archives</a></p>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById("memory-search");
+        const memoryCards = Array.from(
+            document.querySelectorAll(".memory-card")
+        );
+        const emptyState = document.getElementById("empty-state");
+
+        function filterMemories() {
+            const query = searchInput.value.trim().toLowerCase();
+            let visibleCount = 0;
+
+            memoryCards.forEach((card) => {
+                const content = (
+                    card.innerText + " " + (card.dataset.search || "")
+                ).toLowerCase();
+
+                const matches = content.includes(query);
+                card.hidden = !matches;
+
+                if (matches) visibleCount++;
+            });
+
+            emptyState.classList.toggle("visible", visibleCount === 0);
+        }
+
+        searchInput.addEventListener("input", filterMemories);
+
+        const now = new Date();
+
+        document.getElementById("footer-year").textContent =
+            now.getFullYear();
+
+        document.getElementById("edition-date").textContent =
+            now.toLocaleDateString("en-IN", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }) + " · Memories · People · Moments";
+    </script>
+</body>
+</html>

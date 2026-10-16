@@ -1,0 +1,1041 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3efe5">
+    <meta name="description" content="SSG Times Investigation Bureau — satirical investigations into the mysteries, routines, and untold stories of campus life.">
+    <title>Investigation Bureau | SSG TIMES</title>
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+
+    <style>
+        :root {
+            --paper: #f3efe5;
+            --deep: #e6dece;
+            --ink: #191815;
+            --red: #8e2d25;
+            --muted: #69645b;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--serif);
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .top-strip {
+            min-height: 30px;
+            padding: 5px 16px;
+            background: var(--ink);
+            color: var(--paper);
+            font: 10px var(--sans);
+            letter-spacing: 2px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .masthead {
+            padding: 26px 18px 18px;
+            text-align: center;
+            border-bottom: 4px double var(--ink);
+        }
+
+        .masthead .small-line {
+            margin: 0 0 8px;
+            color: var(--muted);
+            font: 10px var(--sans);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .masthead h1 {
+            margin: 0;
+            font-size: clamp(43px, 9vw, 88px);
+            font-weight: 900;
+            letter-spacing: -4px;
+            line-height: 1;
+        }
+
+        .masthead h1 span {
+            color: var(--red);
+        }
+
+        .tagline {
+            margin: 12px 0 0;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        .edition-bar {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            padding: 9px 5%;
+            border-bottom: 3px double var(--ink);
+            font: 10px var(--sans);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-bottom: 1px solid var(--ink);
+            background: var(--deep);
+        }
+
+        nav a {
+            padding: 11px 15px;
+            text-decoration: none;
+            font: bold 11px var(--sans);
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            transition: background .2s, color .2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .page {
+            width: min(1160px, 92%);
+            margin: 0 auto;
+        }
+
+        .notice {
+            margin: 22px 0;
+            padding: 12px 15px;
+            border: 1px solid var(--red);
+            color: var(--red);
+            font: 11px/1.7 var(--sans);
+            text-align: center;
+        }
+
+        .notice strong {
+            letter-spacing: 1px;
+        }
+
+        .section-kicker {
+            margin: 28px 0 5px;
+            color: var(--red);
+            font: bold 11px var(--sans);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .page-title {
+            margin: 0;
+            font-size: clamp(34px, 6vw, 62px);
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+        }
+
+        .page-intro {
+            max-width: 760px;
+            margin: 14px 0 22px;
+            color: #39362f;
+            font-size: 17px;
+        }
+
+        .rule {
+            height: 4px;
+            margin: 20px 0;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .tools {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0 28px;
+        }
+
+        .tools input,
+        .tools select {
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid #aaa18f;
+            border-radius: 0;
+            background: #fbf8f0;
+            color: var(--ink);
+            font: 13px var(--sans);
+        }
+
+        .tools input {
+            flex: 1 1 240px;
+        }
+
+        .tools select {
+            flex: 0 1 210px;
+        }
+
+        .tools input:focus,
+        .tools select:focus {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        .lead-investigation {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+            gap: 26px;
+            padding: 22px 0 30px;
+            border-bottom: 3px double var(--ink);
+        }
+
+        .label {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: var(--red);
+            font: bold 10px var(--sans);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .lead-investigation h2 {
+            margin: 0 0 12px;
+            font-size: clamp(29px, 4vw, 44px);
+            line-height: 1.12;
+        }
+
+        .lead-investigation p {
+            margin: 10px 0;
+        }
+
+        .byline {
+            color: var(--muted);
+            font: 11px var(--sans);
+            letter-spacing: .5px;
+        }
+
+        .image-frame {
+            width: 100%;
+            height: 100%;
+            min-height: 230px;
+            max-height: 390px;
+            overflow: hidden;
+            border: 1px solid #b7ad9a;
+            background: var(--deep);
+        }
+
+        .image-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 230px;
+            max-height: 390px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .lead-investigation .image-frame {
+            height: 320px;
+        }
+
+        .findings {
+            margin: 22px 0;
+            padding: 16px 18px;
+            border-left: 4px solid var(--red);
+            background: var(--deep);
+        }
+
+        .findings strong {
+            display: block;
+            margin-bottom: 4px;
+            font: bold 10px var(--sans);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .findings p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            margin: 34px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 25px;
+        }
+
+        .section-heading span {
+            color: var(--muted);
+            font: 10px var(--sans);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .investigation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 26px;
+        }
+
+        .case {
+            min-width: 0;
+            padding-bottom: 22px;
+            border-bottom: 1px solid #b9b09f;
+        }
+
+        .case h3 {
+            margin: 0 0 9px;
+            font-size: clamp(22px, 3vw, 31px);
+            line-height: 1.15;
+        }
+
+        .case p {
+            margin: 10px 0;
+            font-size: 15px;
+        }
+
+        .case .image-frame {
+            height: 220px;
+            min-height: 0;
+            margin-bottom: 15px;
+        }
+
+        .case .image-frame img {
+            height: 100%;
+            min-height: 0;
+            max-height: none;
+        }
+
+        .case-meta {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 5px 12px;
+            margin-top: 14px;
+            color: var(--muted);
+            font: 10px var(--sans);
+            text-transform: uppercase;
+            letter-spacing: .6px;
+        }
+
+        .case-meta strong {
+            color: var(--red);
+        }
+
+        .case[hidden] {
+            display: none;
+        }
+
+        .empty-state {
+            display: none;
+            padding: 28px 12px;
+            border: 1px dashed var(--muted);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .empty-state.visible {
+            display: block;
+        }
+
+        .submit-box {
+            margin: 36px 0;
+            padding: 26px;
+            border: 2px solid var(--ink);
+            text-align: center;
+        }
+
+        .submit-box .eyebrow {
+            color: var(--red);
+            font: bold 10px var(--sans);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .submit-box h2 {
+            margin: 8px 0;
+            font-size: clamp(27px, 4vw, 38px);
+        }
+
+        .submit-box p {
+            max-width: 620px;
+            margin: 10px auto;
+        }
+
+        .submit-box a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 18px;
+            background: var(--ink);
+            color: var(--paper);
+            font: bold 11px var(--sans);
+            letter-spacing: 1px;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+        }
+
+        .submit-box a:hover {
+            background: var(--red);
+        }
+
+        .disclaimer {
+            margin: 25px 0 35px;
+            padding: 16px;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+            color: var(--muted);
+            font: 12px/1.8 var(--sans);
+        }
+
+        footer {
+            padding: 24px 16px;
+            background: var(--ink);
+            color: var(--paper);
+            text-align: center;
+        }
+
+        footer strong {
+            font-size: 23px;
+            letter-spacing: 1px;
+        }
+
+        footer p {
+            margin: 5px 0;
+            color: #d1c7b5;
+            font: 11px/1.7 var(--sans);
+        }
+
+        @media (max-width: 720px) {
+            .masthead h1 {
+                letter-spacing: -2px;
+            }
+
+            .lead-investigation {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .lead-investigation .image-frame {
+                height: 240px;
+                min-height: 0;
+            }
+
+            .lead-investigation .image-frame img {
+                height: 100%;
+                min-height: 0;
+            }
+
+            .investigation-grid {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .case .image-frame {
+                height: 230px;
+            }
+
+            .edition-bar {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav a {
+                padding: 10px 11px;
+                font-size: 10px;
+            }
+
+            .submit-box {
+                padding: 20px 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-strip">
+        An unofficial campus publication · Curiosity is our only uniform
+    </div>
+
+    <header class="masthead">
+        <p class="small-line">The Unofficial Voice of Sainik School Goalpara</p>
+        <h1>SSG <span>TIMES</span></h1>
+        <p class="tagline">Where every ordinary day has a suspicious plot twist.</p>
+    </header>
+
+    <div class="edition-bar">
+        <span>Investigation Bureau</span>
+        <span id="edition-date">Campus Intelligence · Independent Desk</span>
+        <span>Satire · Stories · Observations</span>
+    </div>
+
+    <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="reports.html">Reports</a>
+        <a href="investigations.html" class="active">Investigations</a>
+        <a href="golden-times.html">Golden Times</a>
+        <a href="opinion.html">Opinion</a>
+        <a href="cartoons.html">Cartoons</a>
+        <a href="archives.html">Archives</a>
+    </nav>
+
+    <main class="page">
+        <div class="notice">
+            <strong>EDITORIAL NOTE:</strong>
+            These investigations are satirical campus commentary, not official school reports.
+            Fictionalised humour is not proof of real misconduct.
+        </div>
+
+        <p class="section-kicker">🚨 SSG Times Investigation Bureau</p>
+        <h2 class="page-title">The Campus Is Full of Mysteries.</h2>
+        <p class="page-intro">
+            Free time disappears. Homework multiplies. A simple announcement develops
+            seventeen interpretations. Our investigators have questions—and an
+            unreasonable number of notebooks.
+        </p>
+
+        <div class="rule"></div>
+
+        <div class="tools" role="search">
+            <input
+                type="search"
+                id="case-search"
+                placeholder="Search the case files..."
+                aria-label="Search investigation stories"
+            >
+
+            <select id="case-filter" aria-label="Filter investigation stories">
+                <option value="all">All investigations</option>
+                <option value="hostel">Hostel mysteries</option>
+                <option value="leadership">Campus hierarchy</option>
+                <option value="routine">Daily routine</option>
+                <option value="technology">Technology mysteries</option>
+            </select>
+        </div>
+
+        <article class="lead-investigation searchable"
+            data-category="leadership"
+            data-search="505 acres 600 cadets campus timetable school sleep investigation">
+
+            <div>
+                <span class="label">Case No. 001 · The Big Picture</span>
+                <h2>505 Acres of Land, 600 Cadets, and Not a Single Guarantee of Eight Hours of Sleep</h2>
+
+                <p class="byline">SSG TIMES BUREAU · CAMPUS LIFE DESK</p>
+
+                <p>
+                    The campus has space for ambitious dreams, long marches, academic
+                    targets, and approximately six hundred different interpretations
+                    of what it means to be tired.
+                </p>
+
+                <p>
+                    Then comes the familiar advice: teenagers need sufficient sleep.
+                    The recommendation is clear. The timetable, meanwhile, continues
+                    operating with the confidence of an institution that has never
+                    personally needed a nap.
+                </p>
+
+                <p>
+                    Our imaginary investigators have reviewed the evidence:
+                    early mornings, classes, activities, assignments, and the
+                    mysterious ability of unfinished work to appear just before bedtime.
+                </p>
+
+                <div class="findings">
+                    <strong>Preliminary finding</strong>
+                    <p>
+                        The importance of sleep is well documented. The mystery is
+                        how students are expected to fit enough of it into a demanding day.
+                    </p>
+                </div>
+
+                <p class="byline">CASE STATUS: OPEN · THE CLOCK DECLINED TO COMMENT</p>
+            </div>
+
+            <div class="image-frame">
+                <img
+                    src="assets/images/front-page-doodle.webp"
+                    alt="Vintage ink illustration of a school campus, books and a giant clock"
+                    loading="lazy"
+                >
+            </div>
+        </article>
+
+        <div class="section-heading">
+            <h2>Active Case Files</h2>
+            <span>Read the evidence</span>
+        </div>
+
+        <section class="investigation-grid" id="case-grid" aria-label="Investigation articles">
+
+            <article class="case searchable"
+                data-category="routine"
+                data-search="MI room medical register illness health talk sleep hygiene">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/mi-room-report.webp"
+                        alt="Vintage newspaper engraving of a clipboard, medical forms and a stethoscope"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="label">Case No. 002 · Health Desk</span>
+                <h3>The MI Room: Please Register Your Illness</h3>
+                <p class="byline">THE ADMINISTRATIVE ADVENTURE</p>
+
+                <p>
+                    Every great mystery begins with a question. Sometimes it begins
+                    with a register, a pen, and a person attempting to explain why
+                    they feel unwell.
+                </p>
+
+                <p>
+                    Meanwhile, health talks remind students about hygiene and sleep.
+                    Sensible advice—followed by the bureau's most difficult question:
+                    how does the recommended bedtime fit into a busy timetable?
+                </p>
+
+                <div class="findings">
+                    <strong>Official finding</strong>
+                    <p>Health matters. So does making time to look after it.</p>
+                </div>
+
+                <div class="case-meta">
+                    <strong>Case status: Observing</strong>
+                    <span>Health & Routine</span>
+                </div>
+            </article>
+
+            <article class="case searchable"
+                data-category="leadership"
+                data-search="senior management unofficial government hierarchy authority leadership juniors seniors">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/hostel-hierarchy.webp"
+                        alt="Vintage engraving of a hostel corridor with exaggerated shadows"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="label">Case No. 003 · Social Structure</span>
+                <h3>The Real Government of SSG: The Unofficial Edition</h3>
+                <p class="byline">THE DEPARTMENT OF WHO TOLD YOU THAT?</p>
+
+                <p>
+                    A simple instruction leaves one person. It passes through several
+                    others. By the time it reaches its destination, it may have gained
+                    three new conditions and an imaginary official seal.
+                </p>
+
+                <p>
+                    The bureau calls this phenomenon <em>Instruction Evolution</em>:
+                    the mysterious process by which a message grows more complicated
+                    every time it is repeated.
+                </p>
+
+                <div class="findings">
+                    <strong>Official finding</strong>
+                    <p>
+                        Leadership is responsibility, not a royal title.
+                        Respect works better when it travels in both directions.
+                    </p>
+                </div>
+
+                <div class="case-meta">
+                    <strong>Case status: Under observation</strong>
+                    <span>Leadership</span>
+                </div>
+            </article>
+
+            <article class="case searchable"
+                data-category="technology"
+                data-search="mobile nahi moh maya phone technology hostel fictional satire">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/mobile-moh-maya.webp"
+                        alt="Vintage illustration of a smartphone behind symbolic bars"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="label">Case No. 004 · Digital Affairs</span>
+                <h3>Operation: Mobile Nahi, Moh-Maya Hai</h3>
+                <p class="byline">THE DEPARTMENT OF TWO MORE MINUTES</p>
+
+                <p>
+                    A screen lights up in the imagination. Somewhere, a notification
+                    waits patiently. The phrase “just two more minutes” enters the
+                    historical record once again.
+                </p>
+
+                <p>
+                    This fictional case examines the modern student's relationship
+                    with technology, entertainment, and the extraordinary power of
+                    a tiny rectangle to occupy the human mind.
+                </p>
+
+                <div class="findings">
+                    <strong>Official finding</strong>
+                    <p>Two minutes is a unit of time. It is not a reliable promise.</p>
+                </div>
+
+                <div class="case-meta">
+                    <strong>Case status: Ongoing</strong>
+                    <span>Technology</span>
+                </div>
+            </article>
+
+            <article class="case searchable"
+                data-category="routine"
+                data-search="five minutes freedom timetable stopwatch free time hostel routine">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/free-time.webp"
+                        alt="Vintage ink illustration of a stopwatch escaping a timetable"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="label">Case No. 005 · Time Division</span>
+                <h3>Operation: Five Minutes of Freedom</h3>
+                <p class="byline">THE LOST-MINUTES UNIT</p>
+
+                <p>
+                    Investigators are examining reports of a rare campus phenomenon:
+                    a small pocket of free time that appears unexpectedly and vanishes
+                    before anyone can decide what to do with it.
+                </p>
+
+                <p>
+                    Witnesses in this fictional report describe ambitious plans,
+                    unfinished conversations, and the universal decision to begin
+                    relaxing immediately after the free time has ended.
+                </p>
+
+                <div class="findings">
+                    <strong>Official finding</strong>
+                    <p>Free time is precious. Planning how to use it may consume it.</p>
+                </div>
+
+                <div class="case-meta">
+                    <strong>Case status: Missing</strong>
+                    <span>Daily Routine</span>
+                </div>
+            </article>
+
+            <article class="case searchable"
+                data-category="routine"
+                data-search="homework multiplicus assignment notebooks multiplying academic mystery">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/homework-multiplicus.webp"
+                        alt="Vintage engraving of notebooks multiplying around a pencil"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="label">Case No. 006 · Academic Mysteries</span>
+                <h3>Breaking: Homework Has Discovered Multiplication</h3>
+                <p class="byline">THE NOTEBOOK FORENSICS TEAM</p>
+
+                <p>
+                    One assignment is completed. Two more appear. A notebook that
+                    looked manageable in the afternoon has somehow developed
+                    several additional pages by evening.
+                </p>
+
+                <p>
+                    Experts have not ruled out the possibility that schoolbags
+                    operate according to a different law of physics after sunset.
+                </p>
+
+                <div class="findings">
+                    <strong>Official finding</strong>
+                    <p>The assignment was one page. The emotional impact was not.</p>
+                </div>
+
+                <div class="case-meta">
+                    <strong>Case status: Reopened</strong>
+                    <span>Academics</span>
+                </div>
+            </article>
+
+            <article class="case searchable"
+                data-category="hostel"
+                data-search="missing sock laundry basket hostel mystery detective">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/missing-sock.webp"
+                        alt="Vintage detective illustration of a lonely sock and laundry basket"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="label">Case No. 007 · Hostel Files</span>
+                <h3>The Great Mystery of the Missing Sock</h3>
+                <p class="byline">A TEXTILE-BASED INVESTIGATION</p>
+
+                <p>
+                    Two socks enter the laundry process. One emerges with a clear
+                    sense of purpose. The other appears to have chosen a completely
+                    different career.
+                </p>
+
+                <p>
+                    The bureau has examined the basket, the cupboard, and the
+                    surrounding area. No sock has agreed to provide a statement.
+                </p>
+
+                <div class="findings">
+                    <strong>Official finding</strong>
+                    <p>Pairs are easy to create. Keeping them together is the challenge.</p>
+                </div>
+
+                <div class="case-meta">
+                    <strong>Case status: Unresolved</strong>
+                    <span>Hostel Life</span>
+                </div>
+            </article>
+
+            <article class="case searchable"
+                data-category="hostel"
+                data-search="bed luxury destination sleep pillow lights out timetable">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/investigation-bureau.webp"
+                        alt="Vintage newspaper illustration of a bed treated like a luxury destination"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="label">Case No. 008 · Premium Facilities</span>
+                <h3>Exclusive: The Bed Has Become a Luxury Destination</h3>
+                <p class="byline">THE SLEEP TOURISM DEPARTMENT</p>
+
+                <p>
+                    After a long day, a mattress and pillow begin to resemble
+                    five-star accommodation. Unfortunately, the booking window
+                    remains suspiciously short.
+                </p>
+
+                <p>
+                    Guests are advised to enjoy their stay promptly. Morning
+                    has a habit of arriving before the customer feels ready to check out.
+                </p>
+
+                <div class="findings">
+                    <strong>Official finding</strong>
+                    <p>The bed is free. The time available to enjoy it is premium.</p>
+                </div>
+
+                <div class="case-meta">
+                    <strong>Case status: Booked</strong>
+                    <span>Hostel Life</span>
+                </div>
+            </article>
+
+            <article class="case searchable"
+                data-category="routine"
+                data-search="announcement six hundred questions rumours information interpretations">
+
+                <div class="image-frame">
+                    <img
+                        src="assets/images/investigation-bureau.webp"
+                        alt="Vintage detective using a magnifying glass to examine clues"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="label">Case No. 009 · Information Desk</span>
+                <h3>One Announcement. Six Hundred Questions.</h3>
+                <p class="byline">THE UNOFFICIAL INTERPRETATION UNIT</p>
+
+                <p>
+                    A routine announcement is delivered. One person asks what it
+                    means. Another asks when it applies. A third claims to know
+                    someone who has already received the complete explanation.
+                </p>
+
+                <p>
+                    Within minutes, the original message has developed several
+                    unofficial versions, each delivered with absolute confidence.
+                </p>
+
+                <div class="findings">
+                    <strong>Official finding</strong>
+                    <p>Information travels fast. Accuracy deserves to keep up.</p>
+                </div>
+
+                <div class="case-meta">
+                    <strong>Case status: Awaiting clarity</strong>
+                    <span>Campus Life</span>
+                </div>
+            </article>
+
+            <article class="case searchable"
+                data-category="hostel"
+                data-search="great festival disappearance Goalpara festival fictional parody CCTV">
+                
+                <div class="image-frame">
+                    <img
+                        src="assets/images/cctv-festival.webp"
+                        alt="Vintage illustration of a CCTV camera overlooking a distant festive street"
+                        loading="lazy"
+                    >
+                </div>
+
+                <span class="label">Case No. 010 · Festival Files</span>
+                <h3>Operation: CCTV Ki Aankh, Festival Ka Maza</h3>
+                <p class="byline">THE DEPARTMENT OF COINCIDENCES</p>
+
+                <p>
+                    The Goalpara festival provides the setting for a fictional
+                    campus mystery about supervision, curiosity, and the stories
+                    that grow more dramatic with every retelling.
+                </p>
+
+                <p>
+                    The bureau has received no verified evidence of wrongdoing.
+                    Accordingly, this report investigates the plot—not the private
+                    lives or conduct of identifiable students.
+                </p>
+
+                <div class="findings">
+                    <strong>Official finding</strong>
+                    <p>The festival happened. The rumours are not evidence. The plot remains fictional.</p>
+                </div>
+
+                <div class="case-meta">
+                    <strong>Case status: Fictional file</strong>
+                    <span>Satirical Report</span>
+                </div>
+            </article>
+
+        </section>
+
+        <p class="empty-state" id="empty-state">
+            No case files match your search. The investigators may need another notebook.
+        </p>
+
+        <section class="submit-box">
+            <span class="eyebrow">The Bureau Needs You</span>
+            <h2>Have a Story Worth Investigating?</h2>
+            <p>
+                Share a campus mystery, a funny observation, a nostalgic memory,
+                or an idea for a future report. Keep it fair, avoid private details,
+                and separate what you know from what you suspect.
+            </p>
+            <a href="mailto:editorthessgtimes@rediffmail.com?subject=SSG%20Times%20Investigation%20Submission">
+                SEND A STORY →
+            </a>
+            <p class="byline">Website: ssgtimes.run.place</p>
+        </section>
+
+        <div class="disclaimer">
+            <strong>EDITORIAL DISCLAIMER</strong><br>
+            SSG TIMES is an unofficial satirical publication and is not an official
+            school newspaper. These case files use humour, exaggeration, and
+            fictionalised scenarios for entertainment. They do not establish that
+            any real person has committed misconduct. Do not submit private,
+            confidential, or unverified allegations about identifiable people.
+            Serious concerns should be raised through appropriate trusted channels.
+        </div>
+    </main>
+
+    <footer>
+        <strong>SSG TIMES</strong>
+        <p>Where every ordinary day has a suspicious plot twist.</p>
+        <p>Unofficial · Independent · Under Construction</p>
+        <p>© <span id="footer-year"></span> SSG Times. All satire, no official affiliation.</p>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById("case-search");
+        const categoryFilter = document.getElementById("case-filter");
+        const cases = Array.from(document.querySelectorAll(".searchable"));
+        const emptyState = document.getElementById("empty-state");
+
+        function filterCases() {
+            const query = searchInput.value.trim().toLowerCase();
+            const category = categoryFilter.value;
+            let visibleCount = 0;
+
+            cases.forEach((item) => {
+                const searchableText = (
+                    item.innerText + " " + (item.dataset.search || "")
+                ).toLowerCase();
+
+                const matchesQuery = searchableText.includes(query);
+                const matchesCategory =
+                    category === "all" || item.dataset.category === category;
+
+                const visible = matchesQuery && matchesCategory;
+                item.hidden = !visible;
+
+                if (visible) visibleCount++;
+            });
+
+            emptyState.classList.toggle("visible", visibleCount === 0);
+        }
+
+        searchInput.addEventListener("input", filterCases);
+        categoryFilter.addEventListener("change", filterCases);
+
+        const now = new Date();
+        document.getElementById("footer-year").textContent = now.getFullYear();
+
+        document.getElementById("edition-date").textContent =
+            now.toLocaleDateString("en-IN", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }) + " · Independent Desk";
+    </script>
+</body>
+</html>

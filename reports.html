@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3efe5">
+    <meta name="description"
+        content="The latest satirical reports, hostel stories, campus mysteries and memories from SSG Times.">
+    <title>Latest Reports | SSG Times</title>
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+
+    <style>
+        :root {
+            --paper: #f3efe5;
+            --deep: #e6dece;
+            --ink: #191815;
+            --red: #8e2d25;
+            --muted: #69645b;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: var(--serif);
+            line-height: 1.55;
+            background-image: radial-gradient(#00000008 .7px, transparent .7px);
+            background-size: 5px 5px;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .topline {
+            background: var(--ink);
+            color: var(--paper);
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font: 700 .7rem var(--sans);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+        }
+
+        .topline a {
+            text-decoration: none;
+        }
+
+        .masthead {
+            max-width: 1180px;
+            margin: auto;
+            padding: 24px 5% 16px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            font: 700 .7rem var(--sans);
+            text-transform: uppercase;
+            letter-spacing: .2em;
+        }
+
+        .logo {
+            font-size: clamp(3.4rem, 10vw, 7.5rem);
+            line-height: .9;
+            letter-spacing: -.075em;
+            margin: 12px 0;
+            font-weight: 900;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .tagline {
+            font-style: italic;
+        }
+
+        .edition {
+            border-top: 3px double var(--ink);
+            border-bottom: 3px double var(--ink);
+            padding: 9px 0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font: 700 .68rem var(--sans);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        nav {
+            background: var(--deep);
+            border-block: 1px solid var(--ink);
+        }
+
+        .nav-inner {
+            max-width: 1180px;
+            margin: auto;
+            padding: 0 4%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 12px 13px;
+            text-decoration: none;
+            font: 700 .7rem var(--sans);
+            text-transform: uppercase;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        main {
+            max-width: 1180px;
+            margin: auto;
+            padding: 32px 5% 60px;
+        }
+
+        .kicker {
+            color: var(--red);
+            font: 800 .72rem var(--sans);
+            text-transform: uppercase;
+            letter-spacing: .15em;
+        }
+
+        .page-title {
+            font-size: clamp(2.7rem, 7vw, 5.5rem);
+            letter-spacing: -.055em;
+            line-height: .98;
+            margin: 8px 0 14px;
+        }
+
+        .intro {
+            max-width: 760px;
+            font-size: 1.12rem;
+            color: #39362f;
+        }
+
+        .notice {
+            margin: 25px 0;
+            padding: 13px 16px;
+            background: #fffaf0;
+            border: 1px solid var(--ink);
+            border-left: 5px solid var(--red);
+            font: .82rem/1.55 var(--sans);
+        }
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 14px 0;
+            border-top: 2px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+            margin-bottom: 24px;
+        }
+
+        .toolbar label {
+            font: 700 .7rem var(--sans);
+            text-transform: uppercase;
+        }
+
+        input,
+        select {
+            padding: 10px;
+            min-height: 40px;
+            border: 1px solid #777166;
+            background: #fffdf7;
+            color: var(--ink);
+            font: .9rem var(--sans);
+        }
+
+        input {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .report {
+            display: flex;
+            flex-direction: column;
+            padding: 17px;
+            min-width: 0;
+            border: 1px solid var(--ink);
+            background: #fffdf7a8;
+        }
+
+        .report.featured {
+            grid-column: span 2;
+            background: #fffdf7;
+        }
+
+        .label {
+            color: var(--red);
+            font: 800 .65rem var(--sans);
+            text-transform: uppercase;
+            letter-spacing: .12em;
+        }
+
+        .meta {
+            color: var(--muted);
+            font: .67rem var(--sans);
+            text-transform: uppercase;
+            margin: 8px 0;
+        }
+
+        .report h2 {
+            font-size: 1.5rem;
+            line-height: 1.12;
+            letter-spacing: -.025em;
+            margin: 6px 0 10px;
+        }
+
+        .report.featured h2 {
+            font-size: clamp(1.9rem, 3.5vw, 3rem);
+        }
+
+        .report p {
+            color: #454138;
+        }
+
+        .art {
+            display: grid;
+            place-items: center;
+            text-align: center;
+            aspect-ratio: 16 / 9;
+            padding: 16px;
+            margin: 12px 0;
+            border: 1px dashed #8b857a;
+            background: repeating-linear-gradient(135deg, #eee8dc, #eee8dc 7px, #e7dfd1 7px, #e7dfd1 14px);
+            color: #595449;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .art {
+
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .art img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .read-link {
+            align-self: flex-start;
+            margin-top: auto;
+            padding-top: 10px;
+            font: 800 .72rem var(--sans);
+            text-transform: uppercase;
+            text-underline-offset: 4px;
+        }
+
+        .read-link:hover {
+            color: var(--red);
+        }
+
+        .empty {
+            display: none;
+            padding: 28px;
+            text-align: center;
+            border: 1px dashed var(--ink);
+            font-style: italic;
+        }
+
+        .submit-box {
+            margin-top: 36px;
+            padding: 24px;
+            background: var(--deep);
+            border: 2px solid var(--ink);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .submit-box h2 {
+            margin: 0 0 5px;
+        }
+
+        .submit-box p {
+            margin: 0;
+        }
+
+        .submit-button {
+            display: inline-block;
+            padding: 12px 16px;
+            background: var(--ink);
+            color: var(--paper);
+            text-decoration: none;
+            font: 800 .7rem var(--sans);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        footer {
+            background: var(--ink);
+            color: var(--paper);
+            text-align: center;
+            padding: 25px 5%;
+            font: .76rem/1.8 var(--sans);
+        }
+
+        footer a {
+            color: var(--paper);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 850px) {
+            .report-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .report.featured {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .topline {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .report-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .report.featured {
+                grid-column: auto;
+            }
+
+            .submit-box {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-button {
+                justify-self: start;
+            }
+
+            nav a {
+                padding: 10px 9px;
+                font-size: .64rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topline">
+        <span>The Unofficial Voice of SSG</span>
+        <a href="index.html">← Back to Front Page</a>
+        <span id="top-date">Campus Edition</span>
+    </div>
+
+    <header class="masthead">
+        <div class="eyebrow">Independent • Unofficial • Mildly Suspicious</div>
+        <h1 class="logo">SSG <span>TIMES</span></h1>
+        <p class="tagline">“Where campus life meets the headline it probably deserves.”</p>
+        <div class="edition">
+            <span>Latest Reports</span>
+            <span>Edition No. 7071-08-B-26</span>
+            <span id="edition-date">Loading date…</span>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html">Front Page</a>
+            <a class="active" href="reports.html">Latest Reports</a>
+            <a href="investigation.html">Investigation Bureau</a>
+            <a href="golden-times.html">Golden Times</a>
+            <a href="opinion.html">Opinion Desk</a>
+            <a href="cartoons.html">Cartoon Corner</a>
+            <a href="archives.html">Archives</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="kicker">News from the land of bells, books & baffling routines</div>
+        <h1 class="page-title">Latest Reports</h1>
+        <p class="intro">
+            From 505 acres of campus and six hundred cadets to the mysterious
+            disappearance of free time, SSG Times investigates the routines,
+            rules, friendships, memories and everyday absurdities of hostel life.
+            Some stories are serious in their message; all satire is unofficial.
+        </p>
+
+        <div class="notice">
+            <strong>EDITORIAL NOTICE:</strong> SSG Times is an unofficial student
+            satire project. Humorous scenarios may be fictional or exaggerated.
+            Satire is not proof of real events, and serious allegations should
+            never be treated as jokes or published without responsible verification.
+        </div>
+
+        <div class="toolbar" role="search">
+            <label for="report-search">Search reports</label>
+            <input id="report-search" type="search" placeholder="Try hostel, sleep, homework, mobile…">
+            <label for="category-filter">Desk</label>
+            <select id="category-filter">
+                <option value="all">All desks</option>
+                <option value="hostel">Hostel Affairs</option>
+                <option value="academics">Academic Mysteries</option>
+                <option value="campus">Campus Life</option>
+                <option value="investigation">Investigations</option>
+                <option value="memories">Golden Times</option>
+            </select>
+        </div>
+
+        <div class="report-grid" id="report-grid">
+
+            <!-- FEATURED REPORT -->
+
+            <article class="report featured" data-category="hostel"
+                data-search="505 acres land 600 cadets eight hours sleep hostel life routine parents expectations campus forest friendship exams">
+                <div class="label">Special Report · Hostel Affairs</div>
+                <div class="meta">The big picture · Campus life</div>
+                <h2>505 Acres of Land, 600 Cadets, and Not a Single Guarantee of Eight Hours of Sleep</h2>
+                <p>
+                    A campus can be enormous, its timetable precise and its ambitions
+                    impressive. Yet the daily mystery remains: how can a day contain
+                    so many bells, classes, activities and expectations, while free
+                    time seems to occupy a very small corner of the calendar?
+                </p>
+                <p>
+                    This special report examines the gap between what people imagine
+                    hostel life to be and what everyday cadet life actually feels like:
+                    routines, examinations, friendships, tired mornings and memories
+                    that may one day become the best stories of all.
+                </p>
+                <div class="art">
+                    <img src="assets/images/front-page-doodle2.webp" alt="Vintage newspaper illustration of campus life"
+                        loading="lazy">
+                </div>
+                <a class="read-link" href="index.html">Explore the front page →</a>
+            </article>
+
+            <!-- MI ROOM -->
+
+            <article class="report" data-category="hostel"
+                data-search="MI Room medical illness sleep hygiene health complaints routine rest eight hours">
+                <div class="label">Hostel Affairs · Wellbeing</div>
+                <div class="meta">Health desk · Satirical commentary</div>
+                <h2>The MI Room: Please Register Your Illness. Your Suffering Will Be Processed in Due Course.</h2>
+                <p>
+                    In the grand administration of hostel life, even feeling unwell
+                    can seem to require a procedure. Meanwhile, advice about sleep,
+                    hygiene and healthy routines meets the reality of early mornings
+                    and a packed schedule.
+                </p>
+                <p>
+                    The joke is about bureaucracy and the contradiction between
+                    recommended rest and busy routines—not about anyone's genuine
+                    illness. Real health complaints deserve appropriate attention.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for the MI Room report">
+                    <img src="assets/images/mi-room-report.webp" alt="">
+                </div>
+                <a class="read-link" href="opinion.html">Visit the Opinion Desk →</a>
+            </article>
+
+            <!-- HOSTEL HIERARCHY -->
+
+            <article class="report" data-category="hostel"
+                data-search="real government SSG teachers seniors control room hostel hierarchy leadership respect fear independence">
+                <div class="label">Special Report · Hostel Affairs</div>
+                <div class="meta">Power, rules and unwritten systems</div>
+                <h2>The Real Government of SSG: Teachers on the Screen, Seniors in the Control Room</h2>
+                <p>
+                    Every institution has its official rules. Hostel life can also
+                    develop an unofficial system of influence, traditions and
+                    expectations that students learn to navigate.
+                </p>
+                <p>
+                    This satirical report examines the difference between leadership
+                    and intimidation, respect and fear, and the importance of
+                    responsibility in a community where people live and work together.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for hostel hierarchy">
+                    <img src="assets/images/hostel-hierarchy.webp" alt="">
+                </div>
+                <a class="read-link" href="opinion.html">Read the Opinion Desk →</a>
+            </article>
+
+            <!-- CCTV AND FESTIVAL -->
+
+            <article class="report" data-category="investigation"
+                data-search="CCTV ki aankh festival ka maza Goalpara festival Faruk friends investigation bureau parody">
+                <div class="label">Investigation Bureau</div>
+                <div class="meta">Operation file · Fictional parody</div>
+                <h2>Operation: CCTV Ki Aankh, Festival Ka Maza</h2>
+                <p>
+                    A fictional investigation into the eternal contest between a
+                    student's desire to enjoy a festival and the all-seeing presence
+                    of campus surveillance. The bureau has many questions and an
+                    unnecessarily dramatic file cover.
+                </p>
+                <p>
+                    Names and events in this parody should be treated as fictional
+                    storytelling, not as claims about real students or actual
+                    disciplinary incidents.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for a fictional CCTV investigation">
+                    <img src="assets/images/cctv-festival.webp" alt="">
+                </div>
+                <a class="read-link" href="investigation.html">Enter the Investigation Bureau →</a>
+            </article>
+
+            <!-- FIVE MINUTES OF FREEDOM -->
+
+            <article class="report" data-category="hostel"
+                data-search="operation five minutes freedom free time bells hostel timetable">
+                <div class="label">Investigation Bureau</div>
+                <div class="meta">Case file No. 001</div>
+                <h2>Operation: Five Minutes of Freedom</h2>
+                <p>
+                    The bureau investigates a rare and mysterious interval between
+                    two scheduled activities. Witnesses describe it as brief, precious
+                    and almost impossible to explain to anyone who has never lived
+                    by a timetable.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for five minutes of freedom">
+                    <img src="assets/images/free-time.webp" alt="">
+                </div>
+                <a class="read-link" href="investigation.html">Read the case files →</a>
+            </article>
+
+            <!-- HOMEWORK -->
+
+            <article class="report" data-category="academics"
+                data-search="homework discovers new species assignment notebooks multiplication homework multiplicus">
+                <div class="label">Academic Mysteries</div>
+                <div class="meta">Case file No. 002</div>
+                <h2>Breaking: Cadet Discovers a New Species of Homework</h2>
+                <p>
+                    One assignment appears to have developed into several related
+                    tasks. Researchers are examining whether the notebook population
+                    is growing naturally or whether a mysterious academic force is
+                    involved.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for multiplying homework">
+                    <img src="assets/images/homework-multiplicus.webp" alt="">
+                </div>
+                <a class="read-link" href="investigation.html">Read the case files →</a>
+            </article>
+
+            <!-- MISSING SOCK -->
+
+            <article class="report" data-category="hostel"
+                data-search="great mystery missing sock laundry hostel clothing disappearance">
+                <div class="label">Investigation Bureau</div>
+                <div class="meta">Case file No. 003</div>
+                <h2>The Great Mystery of the Missing Sock</h2>
+                <p>
+                    Two socks reportedly entered the laundry system. Only one
+                    returned to the scene. The surviving sock has offered no
+                    explanation, and the bureau has opened another file.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for the missing sock mystery">
+                    <img src="assets/images/missing-sock.webp" alt="">
+                </div>
+                <a class="read-link" href="investigation.html">Read the case files →</a>
+            </article>
+
+            <!-- WEATHER REPORT -->
+
+            <article class="report" data-category="campus"
+                data-search="weather report 100 percent chance getting scolded hostel forecast">
+                <div class="label">Campus Forecast</div>
+                <div class="meta">Weather desk · Unofficial</div>
+                <h2>Weather Report: 100% Chance of Getting Scolded</h2>
+                <p>
+                    Today's forecast predicts a high probability of stern reminders,
+                    sudden inspections and a dramatic change in the atmosphere.
+                    Conditions may improve when everyone remembers what the timetable
+                    said in the first place.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for the campus weather report">
+                    <img src="assets/images/alarm-clock.webp" alt="">
+                </div>
+                <a class="read-link" href="investigation.html">Explore more campus cases →</a>
+            </article>
+
+            <!-- BED AND SLEEP -->
+
+            <article class="report" data-category="hostel"
+                data-search="bed luxury destination sleep tired cadet hostel rest">
+                <div class="label">Hostel Affairs</div>
+                <div class="meta">Domestic affairs · Case file No. 005</div>
+                <h2>Exclusive: The Bed Has Become a Luxury Destination</h2>
+                <p>
+                    After a long day of scheduled activities, a horizontal surface
+                    begins to look like a five-star destination. Experts say the
+                    attraction may have something to do with tiredness and the
+                    extraordinary value of uninterrupted rest.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for the luxury bed report">
+                    <img src="assets/images/investigation-bureau.webp" alt="">
+                </div>
+                <a class="read-link" href="investigation.html">Explore more campus cases →</a>
+            </article>
+
+            <!-- MATHEMATICS -->
+
+            <article class="report" data-category="academics"
+                data-search="mathematics department declines comment maths problems equations homework">
+                <div class="label">Academic Mysteries</div>
+                <div class="meta">Mathematics desk · No comment</div>
+                <h2>Mathematics Department Declines to Comment</h2>
+                <p>
+                    Asked why a seemingly simple problem has produced a page full
+                    of calculations, the department has issued a statement consisting
+                    entirely of symbols. The newsroom is attempting to translate it.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for a mathematical mystery">
+                    <img src="assets/images/homework-multiplicus.webp" alt="">
+                </div>
+                <a class="read-link" href="investigation.html">Explore more campus cases →</a>
+            </article>
+
+            <!-- ANNOUNCEMENTS -->
+
+            <article class="report" data-category="campus"
+                data-search="operation one announcement six hundred questions notices confusion students">
+                <div class="label">Campus Affairs</div>
+                <div class="meta">Case file No. 007</div>
+                <h2>Operation: One Announcement, Six Hundred Questions</h2>
+                <p>
+                    A single announcement has reportedly generated enough follow-up
+                    questions to keep an entire newsroom busy. The original message
+                    is being replayed while the bureau searches for the missing
+                    details.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for a confusing announcement">
+                    <img src="assets/images/cartoon-of-the-week.webp" alt="">
+                </div>
+                <a class="read-link" href="investigation.html">Explore more campus cases →</a>
+            </article>
+
+            <!-- SENIOR MANAGEMENT -->
+
+            <article class="report" data-category="hostel"
+                data-search="senior management unofficial edition hostel seniors authority leadership traditions">
+                <div class="label">Hostel Affairs</div>
+                <div class="meta">Case file No. 008</div>
+                <h2>Senior Management: The Unofficial Edition</h2>
+                <p>
+                    An examination of the unofficial traditions that develop among
+                    students living together. The report asks an important question:
+                    when does guidance become leadership, and when does authority
+                    stop being helpful?
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for unofficial senior management">
+                    <img src="assets/images/hostel-hierarchy.webp" alt="">
+                </div>
+                <a class="read-link" href="opinion.html">Visit the Opinion Desk →</a>
+            </article>
+
+            <!-- FESTIVAL DISAPPEARANCE -->
+
+            <article class="report" data-category="campus"
+                data-search="great festival disappearance Goalpara festival campus mystery">
+                <div class="label">Campus Mysteries</div>
+                <div class="meta">Case file No. 009</div>
+                <h2>The Great Festival Disappearance</h2>
+                <p>
+                    The bureau opens a fictional case involving the sudden
+                    disappearance of ordinary routine from a student's imagination
+                    during festival season. Investigators have discovered excitement,
+                    anticipation and several unanswered questions.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for the festival mystery">
+                    <img src="assets/images/missing-free-time.webp" alt="">
+                </div>
+                <a class="read-link" href="investigation.html">Read the case files →</a>
+            </article>
+
+            <!-- SLEEP EARLY -->
+
+            <article class="report" data-category="hostel"
+                data-search="cadet plan sleep early collapses bedtime alarm clock routine">
+                <div class="label">Hostel Affairs</div>
+                <div class="meta">Case file No. 010</div>
+                <h2>Exclusive: Cadet's Plan to Sleep Early Collapses</h2>
+                <p>
+                    A well-organised bedtime plan has met the familiar obstacles of
+                    unfinished work, one last thought and the dangerous belief that
+                    tomorrow's early start somehow belongs to another person.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for the bedtime plan">
+                    <img src="assets/images/alarm-clock.webp" alt="">
+                </div>
+                <a class="read-link" href="investigation.html">Explore more campus cases →</a>
+            </article>
+
+            <!-- MOBILE MOH MAYA -->
+
+            <article class="report" data-category="campus"
+                data-search="operation mobile nahi moh maya mobile phone digital life screen time attachment">
+                <div class="label">Special Report · Campus Life</div>
+                <div class="meta">Technology desk · Mobile Moh-Maya</div>
+                <h2>Operation: Mobile Nahi, Moh-Maya Hai</h2>
+                <p>
+                    The phone is more than a rectangle of glass in the imagination
+                    of a screen-starved student. It becomes a symbol of messages,
+                    music, entertainment, outside life and the world waiting beyond
+                    the hostel routine.
+                </p>
+                <p>
+                    This satirical report explores the strange emotional power of
+                    the mobile phone—and why even the thought of checking one can
+                    become an adventure in a place where access is limited.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for Mobile Moh-Maya">
+                    <img src="assets/images/mobile-moh-maya.webp" alt="">
+                </div>
+                <a class="read-link" href="opinion.html">Visit the Opinion Desk →</a>
+            </article>
+
+            <!-- GOLDEN TIMES -->
+
+            <article class="report" data-category="memories"
+                data-search="Golden Times memories old batches nostalgia legends stories friendships past">
+                <div class="label">Golden Times</div>
+                <div class="meta">From the memory desk</div>
+                <h2>The Golden Times: When Ordinary Days Become Legends</h2>
+                <p>
+                    Years later, the smallest moments can become the stories people
+                    remember most: friendships, shared jokes, unexpected adventures
+                    and the ordinary days that seemed unremarkable at the time.
+                </p>
+                <p>
+                    Golden Times is a home for memories, batch stories and campus
+                    nostalgia—preserving the spirit of student life without exposing
+                    private details or turning rumours into facts.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for the Golden Times archive">
+                    <img src="assets/images/golden-times-archive.webp" alt="">
+                </div>
+                <a class="read-link" href="golden-times.html">Enter Golden Times →</a>
+            </article>
+
+            <!-- CARTOON CORNER -->
+
+            <article class="report" data-category="memories"
+                data-search="Cartoon Corner black white cartoons jokes campus illustrations">
+                <div class="label">Cartoon Corner</div>
+                <div class="meta">Illustration desk</div>
+                <h2>Cartoon Corner: The Campus, Drawn Without a Straight Face</h2>
+                <p>
+                    A collection of visual jokes about timetables, homework,
+                    hostel routines and the everyday contradictions that make
+                    student life a natural subject for satire.
+                </p>
+                <div class="art" role="img" aria-label="Illustration placeholder for Cartoon Corner">
+                    <img src="assets/images/cartoon-corner.webp" alt="">
+                </div>
+                <a class="read-link" href="cartoons.html">Visit Cartoon Corner →</a>
+            </article>
+
+        </div>
+
+        <div class="empty" id="empty-state">
+            No reports match that search. The newsroom has checked under the desk,
+            behind the timetable, and inside one suspicious textbook.
+        </div>
+
+        <section class="submit-box">
+            <div>
+                <h2>Witnessed something hilariously ordinary?</h2>
+                <p>
+                    Send a harmless campus observation, fictional headline, memory
+                    or cartoon idea. Protect privacy, avoid targeting individuals,
+                    and keep serious allegations separate from comedy.
+                </p>
+            </div>
+            <a class="submit-button" href="submit.html">Send a story idea →</a>
+        </section>
+    </main>
+
+    <footer>
+        <div><strong>SSG TIMES</strong> · The Unofficial Voice of SSG</div>
+        <div>Satire, not official school communication. Serious claims need real evidence.</div>
+        <div class="footer-links">
+            <a href="index.html">Front Page</a>
+            <a href="about.html">About & Editorial Policy</a>
+            <a href="corrections.html">Corrections</a>
+            <a href="submit.html">Submit a Story</a>
+        </div>
+        <div>© <span id="year"></span> SSG Times · Unofficial student project</div>
+    </footer>
+
+    <script>
+        (() => {
+            const now = new Date();
+            const dateText = now.toLocaleDateString("en-IN", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+
+            document.getElementById("top-date").textContent = dateText;
+            document.getElementById("edition-date").textContent = dateText;
+            document.getElementById("year").textContent = now.getFullYear();
+
+            const search = document.getElementById("report-search");
+            const filter = document.getElementById("category-filter");
+            const cards = [...document.querySelectorAll(".report")];
+            const empty = document.getElementById("empty-state");
+
+            function updateReports() {
+                const query = search.value.trim().toLowerCase();
+                const category = filter.value;
+                let visible = 0;
+
+                cards.forEach(card => {
+                    const text = (
+                        (card.dataset.search || "") + " " + card.innerText
+                    ).toLowerCase();
+
+                    const matchesText = text.includes(query);
+                    const matchesCategory =
+                        category === "all" || card.dataset.category === category;
+                    const show = matchesText && matchesCategory;
+
+                    card.hidden = !show;
+                    if (show) visible++;
+                });
+
+                empty.style.display = visible ? "none" : "block";
+            }
+
+            search.addEventListener("input", updateReports);
+            filter.addEventListener("change", updateReports);
+        })();
+    </script>
+
+</body>
+
+</html>

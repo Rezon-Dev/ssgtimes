@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, follow">
+<title>404 — Story Missing | SSG TIMES</title>
+<link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+
+<style>
+:root {
+  --paper: #f3efe5;
+  --deep: #e6dece;
+  --ink: #191815;
+  --red: #8e2d25;
+  --muted: #69645b;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--red);
+}
+
+.container {
+  width: min(1050px, 92%);
+  margin: auto;
+}
+
+header {
+  border-bottom: 4px double var(--ink);
+  text-align: center;
+  padding: 27px 0 18px;
+}
+
+.eyebrow {
+  font: 700 11px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--red);
+}
+
+.logo {
+  display: inline-block;
+  font-size: clamp(43px, 8vw, 76px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  line-height: 1.15;
+  margin: 5px 0;
+}
+
+.logo span {
+  color: var(--red);
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 14px;
+  font-style: italic;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--ink);
+  font: 700 11px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+main {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 50px 0;
+}
+
+.error {
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.issue {
+  display: inline-block;
+  border: 1px solid var(--ink);
+  padding: 7px 13px;
+  font: 700 10px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
+
+.error-code {
+  font-size: clamp(110px, 26vw, 230px);
+  font-weight: 900;
+  letter-spacing: -12px;
+  line-height: 0.95;
+  color: var(--red);
+  text-shadow: 3px 3px 0 var(--deep);
+}
+
+.headline {
+  max-width: 700px;
+  margin: 22px auto 15px;
+  font-size: clamp(30px, 6vw, 57px);
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+}
+
+.headline em {
+  font-weight: 400;
+}
+
+.description {
+  max-width: 530px;
+  margin: 0 auto;
+  color: #514b42;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.divider {
+  width: 100%;
+  max-width: 420px;
+  margin: 28px auto;
+  border: 0;
+  border-top: 3px double var(--ink);
+}
+
+.editor-note {
+  max-width: 480px;
+  margin: 0 auto 26px;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.button {
+  display: inline-block;
+  padding: 13px 19px;
+  border: 1px solid var(--ink);
+  font: 700 11px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.2s ease;
+}
+
+.button.primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.button.primary:hover {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.button.secondary:hover {
+  background: var(--deep);
+}
+
+.case-file {
+  margin: 42px auto 0;
+  padding: 17px;
+  max-width: 560px;
+  background: var(--deep);
+  border-left: 4px solid var(--red);
+  text-align: left;
+}
+
+.case-file h3 {
+  font: 700 11px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 7px;
+}
+
+.case-file p {
+  color: #514b42;
+  font-size: 14px;
+}
+
+footer {
+  border-top: 4px double var(--ink);
+  text-align: center;
+  padding: 21px 0 25px;
+}
+
+.footer-name {
+  font-size: 26px;
+  font-weight: 900;
+}
+
+footer p {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+@media (max-width: 520px) {
+  header {
+    padding-top: 23px;
+  }
+
+  nav {
+    gap: 10px 15px;
+  }
+
+  .error-code {
+    letter-spacing: -6px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <div class="eyebrow">Extraordinary News · Unofficial Edition</div>
+    <a href="index.html" class="logo">SSG <span>TIMES</span></a>
+    <p class="tagline">Where every ordinary day has a suspicious plot twist.</p>
+  </div>
+</header>
+
+<nav aria-label="Main navigation">
+  <a href="index.html">Front Page</a>
+  <a href="reports.html">Reports</a>
+  <a href="investigations.html">Investigations</a>
+  <a href="golden-times.html">Golden Times</a>
+  <a href="opinion.html">Opinion</a>
+  <a href="cartoons.html">Cartoons</a>
+  <a href="archives.html">Archives</a>
+  <a href="about.html">About</a>
+  <a href="submit.html">Submit</a>
+</nav>
+
+<main>
+  <section class="container error">
+    <div class="issue">Special Bulletin · Case No. 404</div>
+
+    <div class="error-code">404</div>
+
+    <h1 class="headline">
+      Stop the presses. <em>This page is missing.</em>
+    </h1>
+
+    <p class="description">
+      Our newsroom has searched the archives, questioned the filing
+      department and checked behind the notice board. Unfortunately,
+      the page you requested cannot be found.
+    </p>
+
+    <hr class="divider">
+
+    <p class="editor-note">
+      It may have been moved, renamed, deleted, or never existed.
+      We are treating all possibilities as suspicious.
+    </p>
+
+    <div class="actions">
+      <a class="button primary" href="index.html">← Return to Front Page</a>
+      <a class="button secondary" href="archives.html">Explore the Archives</a>
+    </div>
+
+    <div class="case-file">
+      <h3>Editor's Investigation Report</h3>
+      <p>
+        <strong>Status:</strong> Page not located.<br>
+        <strong>Evidence:</strong> One broken or incorrect URL.<br>
+        <strong>Recommended action:</strong> Return to the front page
+        and continue reading. The newsroom accepts no responsibility
+        for lost browsing time.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-name">SSG TIMES</div>
+    <p>Where every ordinary day has a suspicious plot twist.</p>
+    <p>Unofficial student satire · Not an official school publication</p>
+  </div>
+</footer>
+
+</body>
+</html>

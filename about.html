@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About SSG TIMES — an unofficial satirical student publication documenting the extraordinary mysteries of ordinary school life.">
+<title>About Us | SSG TIMES</title>
+<link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+
+<style>
+:root {
+  --paper: #f3efe5;
+  --deep: #e6dece;
+  --ink: #191815;
+  --red: #8e2d25;
+  --muted: #69645b;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--red);
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin: auto;
+}
+
+.masthead {
+  text-align: center;
+  padding: 32px 0 22px;
+  border-bottom: 4px double var(--ink);
+}
+
+.eyebrow {
+  font: 700 11px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--red);
+}
+
+.logo {
+  font-size: clamp(42px, 8vw, 88px);
+  line-height: 1.05;
+  letter-spacing: -3px;
+  font-weight: 900;
+  margin: 8px 0;
+}
+
+.logo span {
+  color: var(--red);
+}
+
+.tagline {
+  font-size: 15px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.edition {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 17px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ink);
+  font: 11px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px 22px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--ink);
+  font: 700 12px var(--sans);
+  text-transform: uppercase;
+}
+
+nav a.active {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.hero {
+  padding: 58px 0 45px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.kicker {
+  color: var(--red);
+  font: 700 12px var(--sans);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 7vw, 76px);
+  letter-spacing: -2px;
+  line-height: 1.04;
+  max-width: 900px;
+  margin-bottom: 22px;
+}
+
+.hero h1 em {
+  color: var(--red);
+  font-weight: 400;
+}
+
+.hero-intro {
+  font-size: 20px;
+  max-width: 760px;
+  color: #39352f;
+}
+
+.hero-meta {
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid var(--deep);
+  font: 11px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(250px, 0.8fr);
+  gap: 42px;
+  padding: 42px 0;
+}
+
+.section-label {
+  font: 700 11px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--red);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.story h2 {
+  font-size: clamp(29px, 4vw, 43px);
+  line-height: 1.15;
+  margin-bottom: 17px;
+}
+
+.story p {
+  margin-bottom: 17px;
+  font-size: 17px;
+}
+
+.story p.lead::first-letter {
+  float: left;
+  font-size: 58px;
+  line-height: 0.85;
+  padding: 5px 8px 0 0;
+  color: var(--red);
+  font-weight: bold;
+}
+
+.pullquote {
+  margin: 30px 0;
+  padding: 24px;
+  border-top: 3px double var(--ink);
+  border-bottom: 3px double var(--ink);
+  font-size: 27px;
+  font-style: italic;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.pullquote small {
+  display: block;
+  margin-top: 12px;
+  font: 700 10px var(--sans);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.sidebar {
+  border-left: 1px solid var(--deep);
+  padding-left: 28px;
+}
+
+.sidebar-block {
+  margin-bottom: 30px;
+}
+
+.sidebar h3 {
+  font-size: 23px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.sidebar p,
+.sidebar li {
+  font-size: 15px;
+  color: #403b34;
+}
+
+.sidebar ul {
+  padding-left: 18px;
+}
+
+.sidebar li {
+  margin-bottom: 8px;
+}
+
+.notice {
+  background: var(--deep);
+  padding: 23px;
+  border-top: 4px solid var(--red);
+}
+
+.notice h3 {
+  font-size: 24px;
+}
+
+.notice p {
+  font-size: 15px;
+}
+
+.principles {
+  border-top: 3px double var(--ink);
+  border-bottom: 3px double var(--ink);
+  padding: 36px 0;
+  margin-bottom: 40px;
+}
+
+.principles h2 {
+  font-size: 36px;
+  margin-bottom: 24px;
+}
+
+.principle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.principle {
+  border-top: 1px solid var(--ink);
+  padding-top: 13px;
+}
+
+.principle .number {
+  color: var(--red);
+  font: 700 12px var(--sans);
+  letter-spacing: 1px;
+}
+
+.principle h3 {
+  font-size: 24px;
+  margin: 8px 0;
+}
+
+.principle p {
+  font-size: 15px;
+  color: #403b34;
+}
+
+.submit-banner {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 42px;
+}
+
+.submit-banner h2 {
+  font-size: clamp(27px, 4vw, 40px);
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.submit-banner p {
+  color: #d8d0c1;
+  max-width: 590px;
+}
+
+.submit-link {
+  display: inline-block;
+  background: var(--red);
+  color: white;
+  padding: 13px 19px;
+  font: 700 12px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.submit-link:hover {
+  background: #a23b32;
+  color: white;
+}
+
+footer {
+  border-top: 4px double var(--ink);
+  padding: 24px 0 30px;
+  text-align: center;
+}
+
+.footer-logo {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+footer p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 14px;
+  font: 11px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 760px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .sidebar {
+    border-left: none;
+    border-top: 1px solid var(--ink);
+    padding: 25px 0 0;
+  }
+
+  .principle-grid {
+    grid-template-columns: 1fr;
+    gap: 23px;
+  }
+
+  .submit-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px;
+  }
+
+  .edition {
+    justify-content: center;
+  }
+
+  .hero {
+    padding-top: 38px;
+  }
+
+  .logo {
+    letter-spacing: -2px;
+  }
+}
+</style>
+</head>
+
+<body>
+<header class="masthead">
+  <div class="container">
+    <div class="eyebrow">Independent Student Satire · Unofficial Publication</div>
+    <a href="index.html" class="logo">SSG <span>TIMES</span></a>
+    <p class="tagline">Where every ordinary day has a suspicious plot twist.</p>
+    <div class="edition">
+      <span>Established for the sake of documentation</span>
+      <span>Truth, humour & questionable mysteries</span>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Main navigation">
+  <a href="index.html">Front Page</a>
+  <a href="reports.html">Reports</a>
+  <a href="investigations.html">Investigations</a>
+  <a href="golden-times.html">Golden Times</a>
+  <a href="opinion.html">Opinion</a>
+  <a href="cartoons.html">Cartoons</a>
+  <a href="archives.html">Archives</a>
+  <a href="about.html" class="active">About</a>
+  <a href="submit.html">Submit</a>
+</nav>
+
+<main class="container">
+  <section class="hero">
+    <p class="kicker">Behind the Headlines · About SSG TIMES</p>
+    <h1>We observe the ordinary. We report the <em>extraordinary.</em></h1>
+    <p class="hero-intro">
+      A student-made satirical publication devoted to the curious events,
+      familiar struggles, strange routines and unforgettable moments of
+      school life. No ordinary day is safe from an unnecessarily detailed
+      investigation.
+    </p>
+    <div class="hero-meta">
+      Unofficial publication · Student perspective · Satire first
+    </div>
+  </section>
+
+  <section class="content-grid">
+    <article class="story">
+      <div class="section-label">Our Story</div>
+      <h2>A newspaper for the stories hiding between the bells.</h2>
+
+      <p class="lead">
+        Every school has two versions of its daily life: the one written
+        in official notices, timetables and neatly arranged schedules, and
+        the one experienced by the people actually living through it.
+        SSG TIMES is interested in the second one.
+      </p>
+
+      <p>
+        We look at the everyday theatre of campus life: the mysterious
+        disappearance of free time, the legendary power of an announcement,
+        the complicated relationship between cadets and homework, and the
+        small moments that somehow become permanent memories.
+      </p>
+
+      <p>
+        Our approach is simple. Take familiar situations, observe them
+        closely, add a little imagination, and present them with the
+        seriousness of a national inquiry into a missing lunch break.
+      </p>
+
+      <div class="pullquote">
+        “The bell rings. The day continues. The investigation begins.”
+        <small>The unofficial newsroom philosophy</small>
+      </div>
+
+      <p>
+        SSG TIMES is not an official school newspaper, administrative
+        channel or representative of the school. It is an independent
+        creative project built around humour, storytelling, student
+        observations and satire.
+      </p>
+
+      <p>
+        Some stories may be fictional, exaggerated or inspired by common
+        school experiences. The goal is to make readers smile, think,
+        remember and occasionally wonder why a perfectly ordinary event
+        required a full investigation.
+      </p>
+    </article>
+
+    <aside class="sidebar">
+      <div class="sidebar-block">
+        <div class="section-label">The Short Version</div>
+        <h3>What exactly is this?</h3>
+        <p>
+          An unofficial student satire website featuring fictionalised
+          reports, humorous investigations, opinions, cartoons and
+          nostalgic school-life stories.
+        </p>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="section-label">What We Cover</div>
+        <ul>
+          <li>Everyday school and hostel experiences</li>
+          <li>Satirical reports and mock investigations</li>
+          <li>Student perspectives and creative writing</li>
+          <li>Cartoons, memories and campus humour</li>
+          <li>Stories contributed by readers</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-block notice">
+        <h3>A Small but Important Disclaimer</h3>
+        <p>
+          SSG TIMES is unofficial and satirical. It is not affiliated
+          with, endorsed by or authorised to speak for Sainik School
+          Goalpara. Content should not be treated as verified news,
+          official statements or proven allegations.
+        </p>
+      </div>
+
+      <div class="sidebar-block">
+        <div class="section-label">Our Inbox</div>
+        <h3>Have a story?</h3>
+        <p>
+          Send a funny observation, a memory, an original cartoon idea
+          or a piece of writing for editorial consideration.
+        </p>
+        <p style="margin-top: 12px;">
+          <a href="mailto:editorthessgtimes@rediffmail.com"
+             style="color:var(--red);font-weight:bold;overflow-wrap:anywhere;">
+            editorthessgtimes@rediffmail.com
+          </a>
+        </p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="principles">
+    <div class="section-label">The Editorial Code</div>
+    <h2>Three rules of the newsroom.</h2>
+
+    <div class="principle-grid">
+      <article class="principle">
+        <span class="number">01 / HUMOUR</span>
+        <h3>Laugh, don't harm.</h3>
+        <p>
+          Satire should be clever rather than cruel. We aim at familiar
+          situations and absurdities, not at humiliating individuals.
+        </p>
+      </article>
+
+      <article class="principle">
+        <span class="number">02 / RESPONSIBILITY</span>
+        <h3>Privacy matters.</h3>
+        <p>
+          Do not submit private messages, confidential documents,
+          identifying personal details or unverified accusations.
+          Submissions may be edited or declined.
+        </p>
+      </article>
+
+      <article class="principle">
+        <span class="number">03 / CREATIVITY</span>
+        <h3>Bring your own voice.</h3>
+        <p>
+          Original stories, sharp observations, thoughtful opinions
+          and imaginative cartoons are welcome. Good writing matters
+          more than dramatic claims.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="submit-banner">
+    <div>
+      <h2>The newsroom is open.</h2>
+      <p>
+        Got a story worth telling? Send your original work to the
+        editorial inbox. Submissions are reviewed before publication;
+        sending something does not guarantee it will appear on the site.
+      </p>
+    </div>
+    <a class="submit-link" href="submit.html">Submit a Story →</a>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">SSG TIMES</div>
+    <p>Where every ordinary day has a suspicious plot twist.</p>
+    <p>Unofficial student satire. Independent, creative and not school-authorised.</p>
+
+    <div class="footer-links">
+      <a href="index.html">Front Page</a>
+      <a href="archives.html">Archives</a>
+      <a href="about.html">About Us</a>
+      <a href="submit.html">Submit a Story</a>
+      <a href="mailto:editorthessgtimes@rediffmail.com">Contact the Editor</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,856 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f3efe5">
+<title>Cartoon Corner | SSG TIMES</title>
+<link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+
+<style>
+:root {
+  --paper: #f3efe5;
+  --deep: #e6dece;
+  --ink: #191815;
+  --red: #8e2d25;
+  --muted: #69645b;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin-inline: auto;
+}
+
+.topline {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 8px 0;
+  font: 11px var(--sans);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.topline-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.masthead {
+  padding: 28px 0 20px;
+  text-align: center;
+  border-bottom: 4px double var(--ink);
+}
+
+.eyebrow {
+  font: 11px var(--sans);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.logo {
+  display: inline-block;
+  font-size: clamp(42px, 8vw, 82px);
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 1;
+  margin: 10px 0;
+}
+
+.logo span {
+  color: var(--red);
+}
+
+.tagline {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--ink);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  padding: 13px 0;
+}
+
+nav a {
+  padding: 4px 0;
+  font: bold 11px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+  color: var(--red);
+}
+
+.page-intro {
+  padding: 42px 0 28px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.section-label {
+  display: inline-block;
+  padding: 5px 10px;
+  background: var(--red);
+  color: var(--paper);
+  font: bold 10px var(--sans);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.page-intro h1 {
+  max-width: 900px;
+  margin: 18px 0;
+  font-size: clamp(44px, 8vw, 86px);
+  line-height: .95;
+  letter-spacing: -3px;
+}
+
+.page-intro h1 em {
+  color: var(--red);
+  font-weight: normal;
+}
+
+.page-intro p {
+  max-width: 690px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--deep);
+  color: var(--muted);
+  font: 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Featured cartoon */
+
+.feature {
+  padding: 30px 0 36px;
+  border-bottom: 3px double var(--ink);
+}
+
+.feature-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.feature-heading h2 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -1px;
+}
+
+.feature-heading span {
+  color: var(--red);
+  font: bold 10px var(--sans);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.feature-art {
+  width: 100%;
+  height: clamp(240px, 48vw, 500px);
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  background: var(--deep);
+}
+
+.feature-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1);
+}
+
+.feature-caption {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  padding-top: 15px;
+  align-items: start;
+}
+
+.feature-caption h3 {
+  font-size: clamp(26px, 4vw, 42px);
+  line-height: 1.08;
+  margin: 0 0 8px;
+}
+
+.feature-caption p {
+  margin: 0;
+  max-width: 720px;
+  color: var(--muted);
+}
+
+.caption-stamp {
+  border: 2px solid var(--red);
+  color: var(--red);
+  padding: 7px 10px;
+  font: bold 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transform: rotate(3deg);
+}
+
+/* Search and categories */
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 26px 0 18px;
+}
+
+.toolbar h2 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: -1px;
+}
+
+.search {
+  width: min(320px, 100%);
+  padding: 11px 13px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 13px var(--sans);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 22px;
+}
+
+.filter-btn {
+  padding: 8px 13px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font: bold 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Cartoon gallery */
+
+.cartoon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px 20px;
+  padding-bottom: 45px;
+}
+
+.cartoon-card {
+  min-width: 0;
+  border-top: 3px solid var(--ink);
+  padding-top: 12px;
+}
+
+.cartoon-art {
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  background: var(--deep);
+  border: 1px solid var(--deep);
+}
+
+.cartoon-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1) contrast(1.04);
+  transition: transform .3s ease;
+}
+
+.cartoon-card:hover .cartoon-art img {
+  transform: scale(1.035);
+}
+
+.cartoon-number {
+  margin-top: 13px;
+  color: var(--red);
+  font: bold 10px var(--sans);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.cartoon-card h3 {
+  margin: 7px 0;
+  font-size: 25px;
+  line-height: 1.12;
+  letter-spacing: -.5px;
+}
+
+.cartoon-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.card-bottom {
+  margin-top: 12px;
+  padding-top: 9px;
+  border-top: 1px solid var(--deep);
+  color: var(--muted);
+  font: 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.no-results {
+  display: none;
+  padding: 24px 0 45px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Cartoonist submission */
+
+.artist-note {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin: 0 0 40px;
+  padding: 25px;
+  border: 1px solid var(--ink);
+  background: var(--deep);
+}
+
+.artist-note h2 {
+  margin: 9px 0;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.05;
+}
+
+.artist-note p {
+  color: var(--muted);
+}
+
+.artist-note ul {
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.submit-button {
+  display: inline-block;
+  padding: 13px 17px;
+  background: var(--red);
+  color: var(--paper);
+  font: bold 11px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.submit-button:hover {
+  background: var(--ink);
+}
+
+.rules-box {
+  padding: 20px 0;
+  margin-bottom: 25px;
+  border-top: 3px double var(--ink);
+  font: 11px/1.8 var(--sans);
+  color: var(--muted);
+}
+
+footer {
+  padding: 24px 0;
+  background: var(--ink);
+  color: var(--paper);
+  font: 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 760px) {
+  .cartoon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .artist-note {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-caption {
+    grid-template-columns: 1fr;
+  }
+
+  .caption-stamp {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .cartoon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cartoon-art {
+    height: 250px;
+  }
+
+  .page-intro h1 {
+    letter-spacing: -1.5px;
+  }
+
+  .logo {
+    letter-spacing: -2px;
+  }
+
+  .nav-inner {
+    gap: 6px 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topline">
+  <div class="container topline-inner">
+    <span>The Unofficial Voice of SSG</span>
+    <span>Officially Unofficial · Artistically Suspicious</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="container">
+    <div class="eyebrow">Ink, imagination & questionable observations</div>
+    <a href="index.html" class="logo">SSG <span>TIMES</span></a>
+    <div class="tagline">Where every ordinary day has a suspicious plot twist.</div>
+  </div>
+</header>
+
+<nav aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="index.html">Front Page</a>
+    <a href="reports.html">Reports</a>
+    <a href="investigations.html">Investigations</a>
+    <a href="golden-times.html">Golden Times</a>
+    <a href="opinion.html">Opinion</a>
+    <a href="cartoons.html" aria-current="page">Cartoons</a>
+    <a href="archives.html">Archives</a>
+  </div>
+</nav>
+
+<main>
+
+  <section class="page-intro container">
+    <span class="section-label">Cartoon Corner</span>
+    <h1>One drawing.<br><em>A thousand words.</em></h1>
+    <p>
+      Campus life, suspicious timetables, heroic alarm clocks, and the
+      everyday mysteries that become much funnier when someone draws them.
+    </p>
+    <div class="meta">
+      <span>Editorial cartoons</span>
+      <span>Campus humour</span>
+      <span>Drawn with a straight face</span>
+    </div>
+  </section>
+
+  <section class="container feature">
+    <div class="feature-heading">
+      <h2>Cartoon of the Week</h2>
+      <span>Issue No. 001 · Featured Illustration</span>
+    </div>
+
+    <div class="feature-art">
+      <img
+        src="assets/images/cartoon-of-the-week.webp"
+        alt="Vintage newspaper-style illustration of a tiny student facing an enormous timetable"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="feature-caption">
+      <div>
+        <h3>The Timetable Has Entered the Chat.</h3>
+        <p>
+          The student came prepared with a pencil, a notebook, and a plan.
+          The timetable came prepared with seventeen more things to do.
+          Negotiations are ongoing.
+        </p>
+      </div>
+      <div class="caption-stamp">No Free Periods Found</div>
+    </div>
+  </section>
+
+  <section class="container" id="gallery">
+    <div class="toolbar">
+      <h2>The Cartoon Gallery</h2>
+      <input
+        class="search"
+        type="search"
+        id="searchInput"
+        placeholder="Search cartoons..."
+        aria-label="Search cartoons"
+      >
+    </div>
+
+    <div class="filters" aria-label="Filter cartoons">
+      <button class="filter-btn active" data-filter="all" aria-pressed="true">All Cartoons</button>
+      <button class="filter-btn" data-filter="hostel" aria-pressed="false">Hostel Life</button>
+      <button class="filter-btn" data-filter="academics" aria-pressed="false">Academics</button>
+      <button class="filter-btn" data-filter="routine" aria-pressed="false">Daily Routine</button>
+      <button class="filter-btn" data-filter="mystery" aria-pressed="false">Mysteries</button>
+    </div>
+
+    <div class="cartoon-grid" id="cartoonGrid">
+
+      <article class="cartoon-card" data-category="routine academics">
+        <div class="cartoon-art">
+          <img
+            src="assets/images/cartoon-of-the-week.webp"
+            alt="A student standing before an enormous timetable"
+            loading="lazy"
+          >
+        </div>
+        <div class="cartoon-number">Cartoon No. 001</div>
+        <h3>The Timetable Empire</h3>
+        <p>
+          A small student, a giant schedule, and a pencil that has already
+          requested a transfer.
+        </p>
+        <div class="card-bottom">Daily Routine · No negotiations scheduled</div>
+      </article>
+
+      <article class="cartoon-card" data-category="routine hostel">
+        <div class="cartoon-art">
+          <img
+            src="assets/images/alarm-clock.webp"
+            alt="An alarm clock being questioned by a tiny detective"
+            loading="lazy"
+          >
+        </div>
+        <div class="cartoon-number">Cartoon No. 002</div>
+        <h3>The 5:30 A.M. Suspect</h3>
+        <p>
+          The alarm clock insists it is only doing its job. The pillow
+          refuses to accept this explanation.
+        </p>
+        <div class="card-bottom">Morning Affairs · Case reopened</div>
+      </article>
+
+      <article class="cartoon-card" data-category="academics">
+        <div class="cartoon-art">
+          <img
+            src="assets/images/homework-multiplicus.webp"
+            alt="A mountain of notebooks in a vintage ink illustration"
+            loading="lazy"
+          >
+        </div>
+        <div class="cartoon-number">Cartoon No. 003</div>
+        <h3>Homework: The Sequel</h3>
+        <p>
+          The first assignment was completed. Unfortunately, it appears
+          to have produced three more assignments overnight.
+        </p>
+        <div class="card-bottom">Academic Department · To be continued</div>
+      </article>
+
+      <article class="cartoon-card" data-category="hostel mystery">
+        <div class="cartoon-art">
+          <img
+            src="assets/images/missing-sock.webp"
+            alt="A lone sock surrounded by detective clues"
+            loading="lazy"
+          >
+        </div>
+        <div class="cartoon-number">Cartoon No. 004</div>
+        <h3>The Case of the Missing Sock</h3>
+        <p>
+          The laundry basket has been questioned. The cupboard has been
+          searched. One sock remains unaccounted for.
+        </p>
+        <div class="card-bottom">Mystery Desk · Evidence inconclusive</div>
+      </article>
+
+      <article class="cartoon-card" data-category="hostel routine">
+        <div class="cartoon-art">
+          <img
+            src="assets/images/hostel-hierarchy.webp"
+            alt="A long corridor rendered in vintage newspaper engraving"
+            loading="lazy"
+          >
+        </div>
+        <div class="cartoon-number">Cartoon No. 005</div>
+        <h3>The Corridor of Important Footsteps</h3>
+        <p>
+          A perfectly ordinary corridor becomes the centre of a very
+          serious expedition when someone important approaches.
+        </p>
+        <div class="card-bottom">Hostel Life · Walk naturally</div>
+      </article>
+
+      <article class="cartoon-card" data-category="routine mystery">
+        <div class="cartoon-art">
+          <img
+            src="assets/images/free-time.webp"
+            alt="A stopwatch escaping from a crowded timetable"
+            loading="lazy"
+          >
+        </div>
+        <div class="cartoon-number">Cartoon No. 006</div>
+        <h3>Wanted: One Free Hour</h3>
+        <p>
+          Last seen between two scheduled activities. May be travelling
+          under an assumed identity.
+        </p>
+        <div class="card-bottom">Missing Time Bureau · Reward: A nap</div>
+      </article>
+
+      <article class="cartoon-card" data-category="academics mystery">
+        <div class="cartoon-art">
+          <img
+            src="assets/images/investigation-bureau.webp"
+            alt="A miniature detective investigating school supplies"
+            loading="lazy"
+          >
+        </div>
+        <div class="cartoon-number">Cartoon No. 007</div>
+        <h3>The Great Pencil Investigation</h3>
+        <p>
+          It was here during the last period. It was gone by the next.
+          Every notebook is a potential witness.
+        </p>
+        <div class="card-bottom">Investigation Desk · Pencil not located</div>
+      </article>
+
+      <article class="cartoon-card" data-category="hostel mystery">
+        <div class="cartoon-art">
+          <img
+            src="assets/images/mobile-moh-maya.webp"
+            alt="A phone behind symbolic bars in a vintage illustration"
+            loading="lazy"
+          >
+        </div>
+        <div class="cartoon-number">Cartoon No. 008</div>
+        <h3>The Phone Behind Bars</h3>
+        <p>
+          The smartphone has no statement to make. The imaginary notification
+          sound, however, has been heard by several witnesses.
+        </p>
+        <div class="card-bottom">Digital Affairs · Signal unavailable</div>
+      </article>
+
+      <article class="cartoon-card" data-category="academics routine">
+        <div class="cartoon-art">
+          <img
+            src="assets/images/front-page-doodle.webp"
+            alt="A school campus with an oversized clock"
+            loading="lazy"
+          >
+        </div>
+        <div class="cartoon-number">Cartoon No. 009</div>
+        <h3>Time Flies. The Period Doesn't.</h3>
+        <p>
+          The clock moves at remarkable speed during breaks and adopts
+          a philosophical attitude during the longest lesson.
+        </p>
+        <div class="card-bottom">Timekeeping Division · Clock unavailable</div>
+      </article>
+
+    </div>
+
+    <p class="no-results" id="noResults">
+      No cartoons found. Try a different search or category.
+    </p>
+  </section>
+
+  <section class="container artist-note">
+    <div>
+      <span class="section-label">Call for Cartoonists</span>
+      <h2>Your pencil could make the front page.</h2>
+      <p>
+        Draw an original cartoon about school routines, student life,
+        homework, campus mysteries, or the strange behaviour of clocks.
+        Clever ideas beat complicated artwork.
+      </p>
+      <a
+        class="submit-button"
+        href="mailto:editorthessgtimes@rediffmail.com?subject=SSG%20Times%20Cartoon%20Submission"
+      >Submit Your Cartoon ↗</a>
+    </div>
+
+    <div>
+      <h3>Submission Guidelines</h3>
+      <ul>
+        <li>Send original drawings or artwork you have permission to use.</li>
+        <li>Include a title and a short caption.</li>
+        <li>Keep jokes focused on situations, not personal humiliation.</li>
+        <li>Do not include private details or unverified accusations.</li>
+        <li>Include your preferred credit name; anonymous submissions may be considered.</li>
+      </ul>
+      <p><strong>Email:</strong> editorthessgtimes@rediffmail.com</p>
+    </div>
+  </section>
+
+  <section class="container rules-box">
+    <strong>EDITORIAL NOTE:</strong>
+    SSG TIMES is an unofficial satire and student-commentary project, not
+    an official publication of Sainik School Goalpara. Cartoons are intended
+    for humour and commentary. Illustrations and fictional scenarios should
+    not be treated as factual allegations about identifiable people.
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© 2026 SSG TIMES · Unofficial Publication</span>
+    <span>Where every ordinary day has a suspicious plot twist.</span>
+  </div>
+</footer>
+
+<script>
+const searchInput = document.getElementById("searchInput");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const cards = document.querySelectorAll(".cartoon-card");
+const noResults = document.getElementById("noResults");
+
+let activeFilter = "all";
+
+function filterCartoons() {
+  const query = searchInput.value.toLowerCase().trim();
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const searchableText = card.textContent.toLowerCase();
+    const categories = (card.dataset.category || "").split(/\s+/);
+
+    const matchesSearch = searchableText.includes(query);
+    const matchesFilter =
+      activeFilter === "all" || categories.includes(activeFilter);
+
+    const visible = matchesSearch && matchesFilter;
+
+    card.style.display = visible ? "" : "none";
+
+    if (visible) visibleCount++;
+  });
+
+  noResults.style.display = visibleCount === 0 ? "block" : "none";
+}
+
+searchInput.addEventListener("input", filterCartoons);
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    activeFilter = button.dataset.filter;
+
+    filterButtons.forEach(item => {
+      const selected = item === button;
+      item.classList.toggle("active", selected);
+      item.setAttribute("aria-pressed", String(selected));
+    });
+
+    filterCartoons();
+  });
+});
+
+filterCartoons();
+</script>
+
+</body>
+</html>

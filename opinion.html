@@ -1,0 +1,854 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f3efe5">
+<title>Opinion & Editorials | SSG TIMES</title>
+<link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+
+<style>
+:root {
+  --paper: #f3efe5;
+  --deep: #e6dece;
+  --ink: #191815;
+  --red: #8e2d25;
+  --muted: #69645b;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin-inline: auto;
+}
+
+.topline {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 8px 0;
+  font: 11px var(--sans);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.topline-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.masthead {
+  padding: 28px 0 20px;
+  text-align: center;
+  border-bottom: 4px double var(--ink);
+}
+
+.eyebrow {
+  font: 11px var(--sans);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.logo {
+  font-size: clamp(42px, 8vw, 82px);
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 1;
+  margin: 10px 0;
+}
+
+.logo span {
+  color: var(--red);
+}
+
+.tagline {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+nav {
+  border-bottom: 1px solid var(--ink);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  padding: 13px 0;
+}
+
+nav a {
+  font: bold 11px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 0;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+  color: var(--red);
+}
+
+.page-intro {
+  padding: 44px 0 30px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.section-label {
+  display: inline-block;
+  background: var(--red);
+  color: var(--paper);
+  padding: 5px 10px;
+  font: bold 10px var(--sans);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.page-intro h1 {
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: .98;
+  letter-spacing: -2.5px;
+  margin: 18px 0;
+  max-width: 900px;
+}
+
+.page-intro h1 em {
+  color: var(--red);
+  font-weight: normal;
+}
+
+.page-intro p {
+  max-width: 680px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.intro-meta {
+  margin-top: 22px;
+  padding-top: 12px;
+  border-top: 1px solid var(--deep);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  color: var(--muted);
+  font: 10px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 30px;
+  padding: 34px 0;
+  border-bottom: 3px double var(--ink);
+  align-items: center;
+}
+
+.feature-art {
+  height: 360px;
+  overflow: hidden;
+  background: var(--deep);
+  border: 1px solid var(--ink);
+}
+
+.feature-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1) contrast(1.05);
+}
+
+.feature-copy .kicker {
+  color: var(--red);
+  font: bold 10px var(--sans);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.feature-copy h2 {
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin: 13px 0;
+}
+
+.feature-copy p {
+  color: var(--muted);
+}
+
+.byline {
+  font: 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 20px;
+}
+
+.read-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--red);
+  color: var(--red);
+  font: bold 11px var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 24px 0 18px;
+}
+
+.toolbar h2 {
+  font-size: 28px;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.search {
+  width: min(320px, 100%);
+  padding: 11px 13px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 0;
+  font: 13px var(--sans);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 22px;
+}
+
+.filter-btn {
+  cursor: pointer;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  padding: 8px 13px;
+  font: bold 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.opinion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  padding-bottom: 48px;
+}
+
+.opinion-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--deep);
+  padding-bottom: 18px;
+}
+
+.card-art {
+  height: 190px;
+  overflow: hidden;
+  background: var(--deep);
+  margin-bottom: 16px;
+}
+
+.card-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1);
+  transition: transform .3s ease;
+}
+
+.opinion-card:hover .card-art img {
+  transform: scale(1.035);
+}
+
+.card-category {
+  color: var(--red);
+  font: bold 10px var(--sans);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.opinion-card h3 {
+  font-size: 25px;
+  line-height: 1.12;
+  letter-spacing: -.5px;
+  margin: 9px 0 10px;
+}
+
+.opinion-card p {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.card-footer {
+  margin-top: auto;
+  padding-top: 18px;
+  font: 10px var(--sans);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.no-results {
+  display: none;
+  padding: 30px 0;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.quote-strip {
+  padding: 38px 20px;
+  margin: 0 0 42px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  text-align: center;
+}
+
+.quote-strip blockquote {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: clamp(25px, 4vw, 42px);
+  line-height: 1.2;
+  font-style: italic;
+}
+
+.quote-strip p {
+  color: var(--red);
+  font: bold 10px var(--sans);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 18px;
+}
+
+.submit-section {
+  background: var(--deep);
+  border: 1px solid var(--ink);
+  padding: clamp(22px, 5vw, 42px);
+  margin: 0 0 42px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+
+.submit-section h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.05;
+  margin: 10px 0;
+}
+
+.submit-section p {
+  color: var(--muted);
+  max-width: 650px;
+}
+
+.submit-button {
+  display: inline-block;
+  background: var(--red);
+  color: var(--paper);
+  padding: 14px 18px;
+  white-space: nowrap;
+  font: bold 11px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.submit-button:hover {
+  background: var(--ink);
+}
+
+.disclaimer {
+  border-top: 3px double var(--ink);
+  padding: 22px 0;
+  font: 11px/1.8 var(--sans);
+  color: var(--muted);
+}
+
+footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 24px 0;
+  font: 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 760px) {
+  .feature {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-art {
+    height: 260px;
+  }
+
+  .opinion-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .submit-section {
+    grid-template-columns: 1fr;
+  }
+
+  .submit-button {
+    justify-self: start;
+  }
+
+  .logo {
+    letter-spacing: -2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .opinion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-art {
+    height: 220px;
+  }
+
+  .page-intro h1 {
+    letter-spacing: -1.5px;
+  }
+
+  .nav-inner {
+    gap: 6px 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topline">
+  <div class="container topline-inner">
+    <span>The Unofficial Voice of SSG</span>
+    <span>Independent Thought · Questionable Sleep</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="container">
+    <div class="eyebrow">Established in the spirit of observation</div>
+    <a href="index.html" class="logo">SSG <span>TIMES</span></a>
+    <div class="tagline">Where every ordinary day has a suspicious plot twist.</div>
+  </div>
+</header>
+
+<nav aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="index.html">Front Page</a>
+    <a href="reports.html">Reports</a>
+    <a href="investigations.html">Investigations</a>
+    <a href="golden-times.html">Golden Times</a>
+    <a href="opinion.html" aria-current="page">Opinion</a>
+    <a href="cartoons.html">Cartoons</a>
+    <a href="archives.html">Archives</a>
+  </div>
+</nav>
+
+<main>
+  <section class="page-intro container">
+    <span class="section-label">Opinion Desk</span>
+    <h1>Freedom of thought.<br><em>Within permitted limits.</em></h1>
+    <p>
+      Editorials, unpopular questions, mildly dangerous ideas, and observations
+      that have been waiting patiently for their turn to speak.
+    </p>
+    <div class="intro-meta">
+      <span>Independent student perspective</span>
+      <span>Satire & commentary</span>
+      <span>Read. Think. Disagree politely.</span>
+    </div>
+  </section>
+
+  <section class="container feature">
+    <div class="feature-art">
+      <img
+        src="assets/images/front-page-doodle.webp"
+        alt="Vintage ink illustration of a school campus beneath an oversized clock"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="feature-copy">
+      <div class="kicker">Editor's Pick · Editorial No. 001</div>
+      <h2>Discipline Is Important. So Is Being Human.</h2>
+      <p>
+        A timetable can organise a day, a bell can end a period, and a rule
+        can maintain order. But should every minute of student life be
+        measured, monitored, and explained?
+      </p>
+      <p>
+        Perhaps the real achievement is not simply teaching students to
+        follow a schedule, but helping them understand when to think,
+        question, rest, and take responsibility for themselves.
+      </p>
+      <div class="byline">The Opinion Desk · A satirical editorial</div>
+      <a class="read-link" href="#opinion-list">Explore the opinion desk →</a>
+    </div>
+  </section>
+
+  <section class="container" id="opinion-list">
+    <div class="toolbar">
+      <h2>Arguments & Observations</h2>
+      <input
+        class="search"
+        id="searchInput"
+        type="search"
+        placeholder="Search opinions..."
+        aria-label="Search opinion articles"
+      >
+    </div>
+
+    <div class="filters" aria-label="Filter opinion articles">
+      <button class="filter-btn active" data-filter="all" aria-pressed="true">All Opinions</button>
+      <button class="filter-btn" data-filter="campus" aria-pressed="false">Campus Life</button>
+      <button class="filter-btn" data-filter="education" aria-pressed="false">Education</button>
+      <button class="filter-btn" data-filter="satire" aria-pressed="false">Satire</button>
+      <button class="filter-btn" data-filter="reflection" aria-pressed="false">Reflections</button>
+    </div>
+
+    <div class="opinion-grid" id="opinionGrid">
+
+      <article class="opinion-card" data-category="campus reflection">
+        <div class="card-art">
+          <img src="assets/images/hostel-hierarchy.webp"
+               alt="Vintage illustration of a long hostel corridor"
+               loading="lazy">
+        </div>
+        <div class="card-category">Campus Life · Reflection</div>
+        <h3>The Difference Between Discipline and Fear</h3>
+        <p>
+          Discipline should help a person make better decisions even when
+          nobody is watching. If obedience depends entirely on the fear of
+          being caught, what exactly have we taught?
+        </p>
+        <div class="card-footer">An open question · 4 min read</div>
+      </article>
+
+      <article class="opinion-card" data-category="education satire">
+        <div class="card-art">
+          <img src="assets/images/homework-multiplicus.webp"
+               alt="Vintage ink illustration of notebooks piled high"
+               loading="lazy">
+        </div>
+        <div class="card-category">Education · Satire</div>
+        <h3>Homework Is Not a Renewable Resource</h3>
+        <p>
+          Every completed notebook deserves a moment of silence before
+          another assignment appears. Perhaps learning should be measured
+          by understanding, not merely by the height of a paper stack.
+        </p>
+        <div class="card-footer">The Assignment Department · 3 min read</div>
+      </article>
+
+      <article class="opinion-card" data-category="campus satire">
+        <div class="card-art">
+          <img src="assets/images/free-time.webp"
+               alt="Vintage illustration of a stopwatch escaping a timetable"
+               loading="lazy">
+        </div>
+        <div class="card-category">Campus Life · Satire</div>
+        <h3>In Search of the Missing Free Hour</h3>
+        <p>
+          Reports suggest that free time exists somewhere between two
+          activities, although witnesses have yet to produce photographic
+          evidence. The investigation remains open.
+        </p>
+        <div class="card-footer">Unverified Schedule Studies · 2 min read</div>
+      </article>
+
+      <article class="opinion-card" data-category="education reflection">
+        <div class="card-art">
+          <img src="assets/images/investigation-bureau.webp"
+               alt="Vintage illustration of a detective studying school clues"
+               loading="lazy">
+        </div>
+        <div class="card-category">Education · Reflection</div>
+        <h3>Marks Can Measure Answers. Can They Measure Curiosity?</h3>
+        <p>
+          Examinations can show what a student remembers under certain
+          conditions. They cannot fully capture creativity, persistence,
+          kindness, or the questions a student is brave enough to ask.
+        </p>
+        <div class="card-footer">Beyond the Mark Sheet · 4 min read</div>
+      </article>
+
+      <article class="opinion-card" data-category="campus satire">
+        <div class="card-art">
+          <img src="assets/images/mobile-moh-maya.webp"
+               alt="Vintage illustration of a phone behind symbolic bars"
+               loading="lazy">
+        </div>
+        <div class="card-category">Campus Life · Satire</div>
+        <h3>The Great Debate: Phone, Freedom, or Distraction?</h3>
+        <p>
+          A phone can connect people to knowledge, family, and the world.
+          It can also steal an entire evening through five-minute visits.
+          The question may not be simply whether phones are good or bad,
+          but how we learn to use them wisely.
+        </p>
+        <div class="card-footer">The Digital Affairs Desk · 4 min read</div>
+      </article>
+
+      <article class="opinion-card" data-category="reflection education">
+        <div class="card-art">
+          <img src="assets/images/golden-times-archive.webp"
+               alt="Vintage illustration of a school building and a large tree"
+               loading="lazy">
+        </div>
+        <div class="card-category">Reflection · School Memories</div>
+        <h3>One Day, This Will Become a Memory</h3>
+        <p>
+          The ordinary corridor, the familiar bell, the jokes between
+          classes, and even today's complaints may someday look different
+          from a distance. Not every difficult day is beautiful, but every
+          day is part of a larger story.
+        </p>
+        <div class="card-footer">The Golden Times · 3 min read</div>
+      </article>
+
+      <article class="opinion-card" data-category="education reflection">
+        <div class="card-art">
+          <img src="assets/images/front-page-doodle.webp"
+               alt="Vintage school campus illustration"
+               loading="lazy">
+        </div>
+        <div class="card-category">Education · Reflection</div>
+        <h3>Let Students Ask the Difficult Questions</h3>
+        <p>
+          Respect and curiosity can coexist. A thoughtful question is not
+          automatically an act of rebellion, and a respectful disagreement
+          can sometimes lead to a better answer than silent agreement.
+        </p>
+        <div class="card-footer">The Question Paper · 3 min read</div>
+      </article>
+
+      <article class="opinion-card" data-category="satire campus">
+        <div class="card-art">
+          <img src="assets/images/alarm-clock.webp"
+               alt="Vintage illustration of an alarm clock under interrogation"
+               loading="lazy">
+        </div>
+        <div class="card-category">Satire · Daily Routine</div>
+        <h3>The Alarm Clock Has Declined to Comment</h3>
+        <p>
+          Asked why mornings arrive so early, the alarm clock cited
+          institutional policy and referred all further questions to the
+          timetable. The pillow has requested legal representation.
+        </p>
+        <div class="card-footer">Morning Affairs · 2 min read</div>
+      </article>
+
+      <article class="opinion-card" data-category="reflection satire">
+        <div class="card-art">
+          <img src="assets/images/missing-sock.webp"
+               alt="Vintage illustration of a missing sock and detective clues"
+               loading="lazy">
+        </div>
+        <div class="card-category">Reflections · Satire</div>
+        <h3>Small Things Matter More Than We Admit</h3>
+        <p>
+          A missing sock, a forgotten pencil, a friend saving you a seat:
+          little things can shape a day more than grand speeches do.
+          Perhaps the details are where everyday life hides its meaning.
+        </p>
+        <div class="card-footer">The Small Things Column · 3 min read</div>
+      </article>
+
+    </div>
+
+    <p class="no-results" id="noResults">
+      No opinions found. Try another search or select a different category.
+    </p>
+  </section>
+
+  <section class="container quote-strip">
+    <blockquote>
+      “A school should prepare a mind to think, not merely a hand to raise
+      when permission is granted.”
+    </blockquote>
+    <p>Unsigned thought · SSG Times Opinion Desk</p>
+  </section>
+
+  <section class="container submit-section">
+    <div>
+      <span class="section-label">Your Turn</span>
+      <h2>Have an opinion worth printing?</h2>
+      <p>
+        Send us an editorial, a thoughtful disagreement, a campus
+        observation, or a satirical column. Strong arguments are welcome;
+        personal attacks, private information, and unsupported accusations
+        are not.
+      </p>
+      <p><strong>Email:</strong> editorthessgtimes@rediffmail.com</p>
+    </div>
+    <a
+      class="submit-button"
+      href="mailto:editorthessgtimes@rediffmail.com?subject=SSG%20Times%20Opinion%20Submission"
+    >Submit an Opinion ↗</a>
+  </section>
+
+  <section class="container disclaimer">
+    <strong>EDITORIAL NOTE:</strong>
+    SSG TIMES is an unofficial, independent satire and student-commentary
+    project. It is not an official publication of Sainik School Goalpara.
+    Articles may use fictionalized scenarios and humour. Opinions belong
+    to their respective writers and do not necessarily represent the views
+    of the editors. Please do not submit confidential information,
+    identifiable personal allegations, or claims that cannot be responsibly
+    verified.
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© 2026 SSG TIMES · Unofficial Publication</span>
+    <span>Where every ordinary day has a suspicious plot twist.</span>
+  </div>
+</footer>
+
+<script>
+const searchInput = document.getElementById("searchInput");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const cards = document.querySelectorAll(".opinion-card");
+const noResults = document.getElementById("noResults");
+
+let activeFilter = "all";
+
+function filterOpinions() {
+  const query = searchInput.value.toLowerCase().trim();
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    const categories = (card.dataset.category || "").split(/\s+/);
+    const matchesSearch = text.includes(query);
+    const matchesCategory =
+      activeFilter === "all" || categories.includes(activeFilter);
+
+    const show = matchesSearch && matchesCategory;
+    card.style.display = show ? "flex" : "none";
+
+    if (show) visibleCount++;
+  });
+
+  noResults.style.display = visibleCount ? "none" : "block";
+}
+
+searchInput.addEventListener("input", filterOpinions);
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    activeFilter = button.dataset.filter;
+
+    filterButtons.forEach(item => {
+      const isActive = item === button;
+      item.classList.toggle("active", isActive);
+      item.setAttribute("aria-pressed", String(isActive));
+    });
+
+    filterOpinions();
+  });
+});
+
+filterOpinions();
+</script>
+
+</body>
+</html>

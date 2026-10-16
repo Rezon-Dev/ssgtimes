@@ -1,0 +1,890 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f3efe5">
+<title>Archives | SSG TIMES</title>
+<link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+
+<style>
+:root {
+  --paper: #f3efe5;
+  --deep: #e6dece;
+  --ink: #191815;
+  --red: #8e2d25;
+  --muted: #69645b;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin-inline: auto;
+}
+
+.topline {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 8px 0;
+  font: 11px var(--sans);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.topline-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.masthead {
+  padding: 28px 0 20px;
+  text-align: center;
+  border-bottom: 4px double var(--ink);
+}
+
+.eyebrow {
+  color: var(--muted);
+  font: 11px var(--sans);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.logo {
+  display: inline-block;
+  margin: 10px 0;
+  font-size: clamp(42px, 8vw, 82px);
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 1;
+}
+
+.logo span {
+  color: var(--red);
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 14px;
+  font-style: italic;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--ink);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  padding: 13px 0;
+}
+
+nav a {
+  padding: 4px 0;
+  font: bold 11px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+  color: var(--red);
+}
+
+.page-intro {
+  padding: 44px 0 30px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.section-label {
+  display: inline-block;
+  padding: 5px 10px;
+  background: var(--red);
+  color: var(--paper);
+  font: bold 10px var(--sans);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.page-intro h1 {
+  margin: 18px 0;
+  max-width: 900px;
+  font-size: clamp(44px, 8vw, 86px);
+  line-height: .96;
+  letter-spacing: -3px;
+}
+
+.page-intro h1 em {
+  color: var(--red);
+  font-weight: normal;
+}
+
+.page-intro p {
+  max-width: 690px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--deep);
+  color: var(--muted);
+  font: 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Archive introduction */
+
+.archive-banner {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 28px;
+  align-items: center;
+  padding: 32px 0;
+  border-bottom: 3px double var(--ink);
+}
+
+.archive-art {
+  height: 320px;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  background: var(--deep);
+}
+
+.archive-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1);
+}
+
+.archive-banner h2 {
+  margin: 12px 0;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -1px;
+}
+
+.archive-banner p {
+  color: var(--muted);
+}
+
+.archive-stamp {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 7px 10px;
+  border: 2px solid var(--red);
+  color: var(--red);
+  font: bold 10px var(--sans);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transform: rotate(-2deg);
+}
+
+/* Search */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 27px 0 18px;
+}
+
+.toolbar h2 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: -1px;
+}
+
+.search {
+  width: min(330px, 100%);
+  padding: 11px 13px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 13px var(--sans);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 22px;
+}
+
+.filter-btn {
+  padding: 8px 13px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font: bold 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Issue cards */
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 20px;
+  padding-bottom: 45px;
+}
+
+.issue-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-top: 3px solid var(--ink);
+  padding-top: 12px;
+}
+
+.issue-art {
+  height: 220px;
+  overflow: hidden;
+  background: var(--deep);
+  border: 1px solid var(--deep);
+}
+
+.issue-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1);
+  transition: transform .3s ease;
+}
+
+.issue-card:hover .issue-art img {
+  transform: scale(1.03);
+}
+
+.issue-date {
+  margin-top: 13px;
+  color: var(--red);
+  font: bold 10px var(--sans);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.issue-card h3 {
+  margin: 7px 0 9px;
+  font-size: 26px;
+  line-height: 1.12;
+  letter-spacing: -.5px;
+}
+
+.issue-card p {
+  margin: 0 0 15px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.issue-link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--red);
+  color: var(--red);
+  font: bold 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.issue-link:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.no-results {
+  display: none;
+  padding: 24px 0 45px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Timeline */
+
+.timeline-section {
+  margin: 0 0 42px;
+  padding: 28px;
+  border: 1px solid var(--ink);
+  background: var(--deep);
+}
+
+.timeline-section h2 {
+  margin: 10px 0 22px;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.1;
+}
+
+.timeline {
+  border-left: 2px solid var(--red);
+  margin-left: 7px;
+  padding-left: 23px;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 23px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 7px;
+  width: 10px;
+  height: 10px;
+  background: var(--red);
+  border: 2px solid var(--deep);
+  border-radius: 50%;
+}
+
+.timeline-item h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.timeline-item p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Submission and footer */
+
+.archive-submit {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 22px;
+  align-items: center;
+  margin-bottom: 38px;
+  padding: clamp(22px, 5vw, 40px);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.archive-submit h2 {
+  margin: 10px 0;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.08;
+}
+
+.archive-submit p {
+  max-width: 660px;
+  color: #d4cdbf;
+}
+
+.archive-submit .section-label {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.submit-button {
+  display: inline-block;
+  padding: 13px 17px;
+  background: var(--red);
+  color: var(--paper);
+  white-space: nowrap;
+  font: bold 11px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.submit-button:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.disclaimer {
+  border-top: 3px double var(--ink);
+  padding: 22px 0;
+  margin-bottom: 0;
+  color: var(--muted);
+  font: 11px/1.8 var(--sans);
+}
+
+footer {
+  padding: 24px 0;
+  background: var(--ink);
+  color: var(--paper);
+  font: 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 760px) {
+  .archive-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-art {
+    height: 270px;
+  }
+
+  .archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .archive-submit {
+    grid-template-columns: 1fr;
+  }
+
+  .submit-button {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .archive-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .issue-art {
+    height: 250px;
+  }
+
+  .page-intro h1 {
+    letter-spacing: -1.5px;
+  }
+
+  .logo {
+    letter-spacing: -2px;
+  }
+
+  .nav-inner {
+    gap: 6px 13px;
+  }
+
+  .timeline-section {
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topline">
+  <div class="container topline-inner">
+    <span>The Unofficial Voice of SSG</span>
+    <span>Yesterday's Headlines · Tomorrow's Memories</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="container">
+    <div class="eyebrow">A record of stories, satire & school life</div>
+    <a href="index.html" class="logo">SSG <span>TIMES</span></a>
+    <div class="tagline">Where every ordinary day has a suspicious plot twist.</div>
+  </div>
+</header>
+
+<nav aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="index.html">Front Page</a>
+    <a href="reports.html">Reports</a>
+    <a href="investigations.html">Investigations</a>
+    <a href="golden-times.html">Golden Times</a>
+    <a href="opinion.html">Opinion</a>
+    <a href="cartoons.html">Cartoons</a>
+    <a href="archives.html" aria-current="page">Archives</a>
+  </div>
+</nav>
+
+<main>
+
+  <section class="page-intro container">
+    <span class="section-label">The Newspaper Archive</span>
+    <h1>Yesterday's news.<br><em>Tomorrow's nostalgia.</em></h1>
+    <p>
+      Every headline begins somewhere. Revisit the reports, investigations,
+      opinions, cartoons, and campus mysteries collected by SSG TIMES.
+    </p>
+    <div class="meta">
+      <span>Stories preserved</span>
+      <span>Memories in print</span>
+      <span>Unofficial records department</span>
+    </div>
+  </section>
+
+  <section class="container archive-banner">
+    <div class="archive-art">
+      <img
+        src="assets/images/golden-times-archive.webp"
+        alt="Vintage ink illustration of a school building beneath a tree"
+        loading="lazy"
+      >
+    </div>
+
+    <div>
+      <span class="section-label">From the Editor's Desk</span>
+      <h2>Not everything belongs in a textbook. Some things belong in an archive.</h2>
+      <p>
+        The little incidents, familiar routines, impossible schedules,
+        and stories that make campus life memorable deserve a place of
+        their own. This archive is a growing collection, not an official
+        school record.
+      </p>
+      <p>
+        Browse by subject, revisit a section, or follow a headline to its
+        corresponding page.
+      </p>
+      <span class="archive-stamp">Preserved for the record</span>
+    </div>
+  </section>
+
+  <section class="container" id="issues">
+    <div class="toolbar">
+      <h2>Browse the Collection</h2>
+      <input
+        class="search"
+        type="search"
+        id="searchInput"
+        placeholder="Search the archive..."
+        aria-label="Search archive entries"
+      >
+    </div>
+
+    <div class="filters" aria-label="Filter archive entries">
+      <button class="filter-btn active" data-filter="all" aria-pressed="true">All Sections</button>
+      <button class="filter-btn" data-filter="reports" aria-pressed="false">Reports</button>
+      <button class="filter-btn" data-filter="investigations" aria-pressed="false">Investigations</button>
+      <button class="filter-btn" data-filter="memories" aria-pressed="false">Memories</button>
+      <button class="filter-btn" data-filter="opinion" aria-pressed="false">Opinion</button>
+      <button class="filter-btn" data-filter="cartoons" aria-pressed="false">Cartoons</button>
+    </div>
+
+    <div class="archive-grid" id="archiveGrid">
+
+      <article class="issue-card" data-category="reports">
+        <div class="issue-art">
+          <img
+            src="assets/images/front-page-doodle.webp"
+            alt="Vintage illustrated school campus with an oversized clock"
+            loading="lazy"
+          >
+        </div>
+        <div class="issue-date">Front Page · Reports</div>
+        <h3>The Campus Chronicles</h3>
+        <p>
+          A collection of campus observations, daily events, and
+          ordinary happenings with extraordinary potential for headlines.
+        </p>
+        <a class="issue-link" href="reports.html">Visit Reports →</a>
+      </article>
+
+      <article class="issue-card" data-category="investigations">
+        <div class="issue-art">
+          <img
+            src="assets/images/investigation-bureau.webp"
+            alt="Vintage detective examining clues with a magnifying glass"
+            loading="lazy"
+          >
+        </div>
+        <div class="issue-date">Investigation Bureau</div>
+        <h3>Cases That Demand Answers</h3>
+        <p>
+          Missing time, disappearing stationery, and other fictional
+          campus mysteries investigated with suspicious seriousness.
+        </p>
+        <a class="issue-link" href="investigations.html">Open Investigations →</a>
+      </article>
+
+      <article class="issue-card" data-category="memories">
+        <div class="issue-art">
+          <img
+            src="assets/images/golden-times-archive.webp"
+            alt="Old-fashioned illustration of a school and a tree"
+            loading="lazy"
+          >
+        </div>
+        <div class="issue-date">Golden Times</div>
+        <h3>The Memory Department</h3>
+        <p>
+          Reflections on familiar places, small moments, friendships,
+          and the everyday details that become stories over time.
+        </p>
+        <a class="issue-link" href="golden-times.html">Revisit Memories →</a>
+      </article>
+
+      <article class="issue-card" data-category="opinion">
+        <div class="issue-art">
+          <img
+            src="assets/images/homework-multiplicus.webp"
+            alt="Vintage illustration of a large pile of notebooks"
+            loading="lazy"
+          >
+        </div>
+        <div class="issue-date">Opinion Desk</div>
+        <h3>Arguments & Observations</h3>
+        <p>
+          Editorials and commentary about student life, learning,
+          routines, responsibility, and the questions worth asking.
+        </p>
+        <a class="issue-link" href="opinion.html">Read Opinions →</a>
+      </article>
+
+      <article class="issue-card" data-category="cartoons">
+        <div class="issue-art">
+          <img
+            src="assets/images/cartoon-of-the-week.webp"
+            alt="Vintage cartoon of a student facing an enormous timetable"
+            loading="lazy"
+          >
+        </div>
+        <div class="issue-date">Cartoon Corner</div>
+        <h3>A Thousand Words in Ink</h3>
+        <p>
+          Illustrated jokes, exaggerated timetables, suspicious alarm
+          clocks, and the lighter side of everyday campus routines.
+        </p>
+        <a class="issue-link" href="cartoons.html">Browse Cartoons →</a>
+      </article>
+
+      <article class="issue-card" data-category="reports investigations">
+        <div class="issue-art">
+          <img
+            src="assets/images/hostel-hierarchy.webp"
+            alt="Vintage ink illustration of a long hostel corridor"
+            loading="lazy"
+          >
+        </div>
+        <div class="issue-date">Special Coverage</div>
+        <h3>The Hostel Files</h3>
+        <p>
+          Satirical observations about routines, corridors, schedules,
+          and the complicated science of finding a quiet moment.
+        </p>
+        <a class="issue-link" href="reports.html">Explore Coverage →</a>
+      </article>
+
+    </div>
+
+    <p class="no-results" id="noResults">
+      No matching entries found. Try another search or category.
+    </p>
+  </section>
+
+  <section class="container timeline-section">
+    <span class="section-label">The Record So Far</span>
+    <h2>A Newspaper in the Making</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Chapter One — The Front Page</h3>
+        <p>
+          The beginning of SSG TIMES: a place for campus-themed satire,
+          stories, and observations.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Chapter Two — The Investigation Desk</h3>
+        <p>
+          Fictional cases and exaggerated mysteries enter the newsroom,
+          each treated with the seriousness of a very unnecessary inquiry.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Chapter Three — The Golden Times</h3>
+        <p>
+          The archive makes room for memories, familiar moments, and
+          stories worth revisiting.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Chapter Four — The Opinion & Cartoon Desks</h3>
+        <p>
+          Commentary and illustration add new perspectives to the
+          growing collection.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Next Chapter — Written by You</h3>
+        <p>
+          New submissions can bring fresh voices, original cartoons,
+          thoughtful editorials, and fictional campus stories to the site.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container archive-submit">
+    <div>
+      <span class="section-label">Contribute to the Archive</span>
+      <h2>Today's story could be tomorrow's memory.</h2>
+      <p>
+        Have an original story, an old campus memory, an editorial,
+        or a cartoon? Send it to the editorial desk for consideration.
+        Please avoid private information and unsupported claims about
+        identifiable people.
+      </p>
+      <p><strong>Email:</strong> editorthessgtimes@rediffmail.com</p>
+    </div>
+
+    <a
+      class="submit-button"
+      href="mailto:editorthessgtimes@rediffmail.com?subject=SSG%20Times%20Archive%20Submission"
+    >Send a Submission ↗</a>
+  </section>
+
+  <section class="container disclaimer">
+    <strong>ARCHIVE NOTICE:</strong>
+    SSG TIMES is an unofficial, independent satire and student-commentary
+    project. It is not an official publication or historical archive of
+    Sainik School Goalpara. The collection and timeline on this page describe
+    the website's editorial sections, not verified publication dates or
+    official school events. Satirical and fictionalized material should not
+    be treated as factual allegations.
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© 2026 SSG TIMES · Unofficial Publication</span>
+    <span>Where every ordinary day has a suspicious plot twist.</span>
+  </div>
+</footer>
+
+<script>
+const searchInput = document.getElementById("searchInput");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const cards = document.querySelectorAll(".issue-card");
+const noResults = document.getElementById("noResults");
+
+let activeFilter = "all";
+
+function filterArchive() {
+  const query = searchInput.value.toLowerCase().trim();
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const searchableText = card.textContent.toLowerCase();
+    const categories = (card.dataset.category || "").split(/\s+/);
+
+    const matchesSearch = searchableText.includes(query);
+    const matchesCategory =
+      activeFilter === "all" || categories.includes(activeFilter);
+
+    const visible = matchesSearch && matchesCategory;
+
+    card.style.display = visible ? "flex" : "none";
+
+    if (visible) visibleCount++;
+  });
+
+  noResults.style.display = visibleCount === 0 ? "block" : "none";
+}
+
+searchInput.addEventListener("input", filterArchive);
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    activeFilter = button.dataset.filter;
+
+    filterButtons.forEach(item => {
+      const selected = item === button;
+      item.classList.toggle("active", selected);
+      item.setAttribute("aria-pressed", String(selected));
+    });
+
+    filterArchive();
+  });
+});
+
+filterArchive();
+</script>
+
+</body>
+</html>

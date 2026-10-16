@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f3efe5">
+<title>Submit Your Story | SSG TIMES</title>
+<link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+
+<style>
+:root {
+  --paper: #f3efe5;
+  --deep: #e6dece;
+  --ink: #191815;
+  --red: #8e2d25;
+  --muted: #69645b;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.container {
+  width: min(1080px, 92%);
+  margin-inline: auto;
+}
+
+.topline {
+  padding: 8px 0;
+  background: var(--ink);
+  color: var(--paper);
+  font: 11px var(--sans);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.topline-inner,
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.masthead {
+  padding: 28px 0 20px;
+  text-align: center;
+  border-bottom: 4px double var(--ink);
+}
+
+.eyebrow {
+  color: var(--muted);
+  font: 11px var(--sans);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.logo {
+  display: inline-block;
+  margin: 10px 0;
+  font-size: clamp(42px, 8vw, 82px);
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 1;
+}
+
+.logo span {
+  color: var(--red);
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 14px;
+  font-style: italic;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--ink);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  padding: 13px 0;
+}
+
+nav a {
+  padding: 4px 0;
+  font: bold 11px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+  color: var(--red);
+}
+
+.page-intro {
+  padding: 42px 0 30px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.section-label {
+  display: inline-block;
+  padding: 5px 10px;
+  background: var(--red);
+  color: var(--paper);
+  font: bold 10px var(--sans);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.page-intro h1 {
+  max-width: 850px;
+  margin: 18px 0;
+  font-size: clamp(44px, 8vw, 82px);
+  line-height: .97;
+  letter-spacing: -3px;
+}
+
+.page-intro h1 em {
+  color: var(--red);
+  font-weight: normal;
+}
+
+.page-intro p {
+  max-width: 680px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--deep);
+  color: var(--muted);
+  font: 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Main layout */
+
+.submit-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(250px, .75fr);
+  gap: 35px;
+  padding-top: 32px;
+  padding-bottom: 42px;
+  align-items: start;
+}
+
+.form-heading {
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 3px double var(--ink);
+}
+
+.form-heading h2 {
+  margin: 8px 0;
+  font-size: 34px;
+  line-height: 1.1;
+}
+
+.form-heading p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field label,
+.field-label {
+  font: bold 11px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.required {
+  color: var(--red);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 13px;
+  border: 1px solid #aaa08e;
+  border-radius: 0;
+  background: rgba(255,255,255,.2);
+  color: var(--ink);
+  font: 14px var(--sans);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #81796d;
+}
+
+.field textarea {
+  min-height: 175px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.field small {
+  color: var(--muted);
+  font: 11px/1.5 var(--sans);
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--muted);
+  font: 12px/1.6 var(--sans);
+}
+
+.consent input {
+  margin-top: 4px;
+  accent-color: var(--red);
+  flex: 0 0 auto;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 15px 18px;
+  border: 0;
+  background: var(--red);
+  color: var(--paper);
+  cursor: pointer;
+  font: bold 12px var(--sans);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.submit-button:hover {
+  background: var(--ink);
+}
+
+.form-note {
+  color: var(--muted);
+  font: 11px/1.7 var(--sans);
+}
+
+.form-status {
+  display: none;
+  padding: 14px;
+  border: 1px solid var(--red);
+  color: var(--ink);
+  font: 13px/1.6 var(--sans);
+  overflow-wrap: anywhere;
+}
+
+/* Sidebar */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.side-box {
+  padding: 21px;
+  border: 1px solid var(--ink);
+}
+
+.side-box.dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.side-box h3 {
+  margin: 8px 0 12px;
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.side-box p,
+.side-box li {
+  font-size: 13px;
+}
+
+.side-box p {
+  color: var(--muted);
+}
+
+.side-box.dark p {
+  color: #d4cdbf;
+}
+
+.side-box ul {
+  padding-left: 18px;
+  margin-bottom: 0;
+}
+
+.side-box li {
+  margin: 8px 0;
+  color: var(--muted);
+}
+
+.side-box.dark li {
+  color: #d4cdbf;
+}
+
+.email-address {
+  display: block;
+  margin-top: 10px;
+  color: var(--red);
+  font: bold 13px var(--sans);
+  overflow-wrap: anywhere;
+}
+
+.side-box.dark .email-address {
+  color: #f0c6b6;
+}
+
+.sidebar-art {
+  width: 100%;
+  height: 230px;
+  margin-top: 16px;
+  overflow: hidden;
+  border: 1px solid var(--deep);
+  background: var(--deep);
+}
+
+.sidebar-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(1);
+}
+
+/* Footer */
+
+.disclaimer {
+  border-top: 3px double var(--ink);
+  padding: 22px 0;
+  color: var(--muted);
+  font: 11px/1.8 var(--sans);
+}
+
+footer {
+  padding: 24px 0;
+  background: var(--ink);
+  color: var(--paper);
+  font: 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 780px) {
+  .submit-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sidebar .side-box:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 500px) {
+  .two-columns,
+  .sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar .side-box:first-child {
+    grid-column: auto;
+  }
+
+  .page-intro h1 {
+    letter-spacing: -1.5px;
+  }
+
+  .logo {
+    letter-spacing: -2px;
+  }
+
+  .nav-inner {
+    gap: 6px 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topline">
+  <div class="container topline-inner">
+    <span>The Unofficial Voice of SSG</span>
+    <span>Every Story Starts Somewhere</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="container">
+    <div class="eyebrow">Letters, stories & observations</div>
+    <a href="index.html" class="logo">SSG <span>TIMES</span></a>
+    <div class="tagline">Where every ordinary day has a suspicious plot twist.</div>
+  </div>
+</header>
+
+<nav aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="index.html">Front Page</a>
+    <a href="reports.html">Reports</a>
+    <a href="investigations.html">Investigations</a>
+    <a href="golden-times.html">Golden Times</a>
+    <a href="opinion.html">Opinion</a>
+    <a href="cartoons.html">Cartoons</a>
+    <a href="archives.html">Archives</a>
+    <a href="submit.html" aria-current="page">Submit</a>
+  </div>
+</nav>
+
+<main>
+
+  <section class="page-intro container">
+    <span class="section-label">The Editorial Desk</span>
+    <h1>Have a story?<br><em>Put it in print.</em></h1>
+    <p>
+      A campus observation, a thoughtful opinion, a fictional mystery,
+      a forgotten memory, or a cartoon with a point to make — send your
+      original work to SSG TIMES for editorial consideration.
+    </p>
+    <div class="meta">
+      <span>Original submissions welcome</span>
+      <span>Stories · Opinions · Cartoons</span>
+      <span>Every submission reviewed</span>
+    </div>
+  </section>
+
+  <div class="container submit-layout">
+
+    <section>
+      <div class="form-heading">
+        <span class="section-label">Submission Form</span>
+        <h2>Send Us Your Work</h2>
+        <p>
+          Complete the details below. When you submit, your email application
+          will open with your information prepared as a draft.
+        </p>
+      </div>
+
+      <form id="submissionForm">
+
+        <div class="two-columns">
+          <div class="field">
+            <label for="author">Author / Pen Name <span class="required">*</span></label>
+            <input
+              id="author"
+              name="author"
+              type="text"
+              maxlength="80"
+              placeholder="Your preferred credit name"
+              autocomplete="nickname"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="email">Contact Email <span class="required">*</span></label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              maxlength="120"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+            <small>Used only if the editors need to contact you about your submission.</small>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="category">Submission Category <span class="required">*</span></label>
+          <select id="category" name="category" required>
+            <option value="">Choose a category</option>
+            <option value="Campus Report">Campus Report</option>
+            <option value="Satirical Investigation">Satirical Investigation</option>
+            <option value="Opinion / Editorial">Opinion / Editorial</option>
+            <option value="Cartoon / Illustration">Cartoon / Illustration</option>
+            <option value="Memory / Golden Times">Memory / Golden Times</option>
+            <option value="Poetry / Creative Writing">Poetry / Creative Writing</option>
+            <option value="Letter to the Editor">Letter to the Editor</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="title">Submission Title <span class="required">*</span></label>
+          <input
+            id="title"
+            name="title"
+            type="text"
+            maxlength="150"
+            placeholder="Give your story a headline"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="content">Your Story / Message <span class="required">*</span></label>
+          <textarea
+            id="content"
+            name="content"
+            minlength="20"
+            maxlength="12000"
+            placeholder="Write your story, opinion, caption, or proposal here..."
+            required
+          ></textarea>
+          <small>20–12,000 characters. For artwork, explain your idea and attach the image in your email draft.</small>
+        </div>
+
+        <label class="consent" for="confirmation">
+          <input id="confirmation" name="confirmation" type="checkbox" required>
+          <span>
+            I confirm this is my own work or that I have permission to submit it.
+            I understand that submission does not guarantee publication and that
+            the editors may contact me about edits or clarification.
+          </span>
+        </label>
+
+        <button class="submit-button" type="submit">Prepare Email Submission ↗</button>
+
+        <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+
+        <p class="form-note">
+          <strong>Important:</strong> This website form does not upload or store
+          submissions on a server. It prepares an email using your device's
+          default email application. If no email application opens, send your
+          submission manually to the address shown on this page.
+        </p>
+
+      </form>
+    </section>
+
+    <aside class="sidebar">
+
+      <div class="side-box dark">
+        <span class="section-label">The Newsroom</span>
+        <h3>Good stories deserve a hearing.</h3>
+        <p>
+          SSG TIMES welcomes creative, thoughtful, funny, and constructive
+          contributions. You do not need to be a professional writer —
+          clarity and originality matter more than fancy vocabulary.
+        </p>
+        <p><strong>Editorial inbox:</strong></p>
+        <a class="email-address" href="mailto:editorthessgtimes@rediffmail.com">
+          editorthessgtimes@rediffmail.com
+        </a>
+      </div>
+
+      <div class="side-box">
+        <span class="section-label">Before Sending</span>
+        <h3>Submission Checklist</h3>
+        <ul>
+          <li>Use an original title.</li>
+          <li>Check spelling and readability.</li>
+          <li>Separate facts from opinions and satire.</li>
+          <li>Get permission for artwork you did not create.</li>
+          <li>Leave out passwords, private messages, and personal details.</li>
+          <li>Do not make unsupported allegations about identifiable people.</li>
+        </ul>
+      </div>
+
+      <div class="side-box">
+        <span class="section-label">The Inspiration Desk</span>
+        <h3>Not sure what to write?</h3>
+        <p>
+          Start with something small: an unusual routine, a funny moment,
+          a question about education, a fictional detective story, or a
+          memory you want to preserve.
+        </p>
+        <div class="sidebar-art">
+          <img
+            src="assets/images/investigation-bureau.webp"
+            alt="Vintage newspaper illustration of a detective examining clues"
+            loading="lazy"
+          >
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <section class="container disclaimer">
+    <strong>PRIVACY & EDITORIAL NOTICE:</strong>
+    SSG TIMES is an unofficial student-oriented satire and creative
+    publication, not an official publication of Sainik School Goalpara.
+    Only submit information you are comfortable sharing with the editorial
+    team. Do not submit confidential school documents, sensitive personal
+    data, private conversations, or material that could put someone at risk.
+    Publication decisions remain with the editors. The form does not send
+    anything automatically; it prepares an email draft for you to review.
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© 2026 SSG TIMES · Unofficial Publication</span>
+    <span>Where every ordinary day has a suspicious plot twist.</span>
+  </div>
+</footer>
+
+<script>
+const form = document.getElementById("submissionForm");
+const statusBox = document.getElementById("formStatus");
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  if (!form.reportValidity()) {
+    return;
+  }
+
+  const author = document.getElementById("author").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const category = document.getElementById("category").value;
+  const title = document.getElementById("title").value.trim();
+  const content = document.getElementById("content").value.trim();
+
+  const subject = "[SSG TIMES SUBMISSION] " + title;
+
+  const body = [
+    "SSG TIMES SUBMISSION",
+    "===================",
+    "",
+    "Author / Pen Name: " + author,
+    "Contact Email: " + email,
+    "Category: " + category,
+    "Title: " + title,
+    "",
+    "SUBMISSION",
+    "----------",
+    content,
+    "",
+    "===================",
+    "Submitted through the SSG TIMES website form.",
+    "Please review this submission for editorial consideration."
+  ].join("\n");
+
+  const mailto =
+    "mailto:editorthessgtimes@rediffmail.com" +
+    "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(body);
+
+  statusBox.style.display = "block";
+  statusBox.textContent =
+    "Your email draft is being prepared. Review the recipient, subject, and content before sending. If your email application does not open, email editorthessgtimes@rediffmail.com manually.";
+
+  window.location.href = mailto;
+});
+</script>
+
+</body>
+</html>
